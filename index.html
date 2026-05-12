@@ -85,7 +85,7 @@
     }
     .nav-links a:hover { color: var(--text); }
 
-    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
 
     #hero { padding: 130px 0 72px; border-bottom: 0.5px solid var(--border); }
 
@@ -236,6 +236,31 @@
       .exp-item   { grid-template-columns: 1fr; gap: 0.3rem; }
       .edu-item   { grid-template-columns: 1fr; gap: 0.3rem; }
     }
+
+    /* FLOATING SIDEBAR BUTTONS */
+    .float-bar {
+      position: fixed; right: 1.25rem; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px; z-index: 99;
+    }
+    .float-btn {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .float-btn:hover { border-color: var(--accent-bdr); color: var(--accent); background: var(--accent-bg); }
+    .float-btn svg { width: 16px; height: 16px; }
+    .float-btn .float-tip {
+      position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+      background: var(--bg-card2); border: 0.5px solid var(--border);
+      color: var(--text-muted); font-size: 11px; white-space: nowrap;
+      padding: 4px 9px; border-radius: 6px; opacity: 0; pointer-events: none;
+      transition: opacity 0.15s;
+    }
+    .float-btn:hover .float-tip { opacity: 1; }
+    @media (max-width: 1080px) { .float-bar { display: none; } }
   </style>
 </head>
 <body>
@@ -260,7 +285,7 @@
         </div>
         <div class="hero-lang">
           <p><strong>ES</strong> Native</p>
-          <p><strong>EN</strong> Full Professional</p>
+          <p><strong>EN</strong> Intermediate</p>
           <p style="margin-top:8px; font-size:11px;">Santo Domingo, DR</p>
         </div>
       </div>
@@ -525,20 +550,44 @@
       <div class="skills-wrap">
         <span class="skill-tag">SOC Operations</span>
         <span class="skill-tag">Incident Response</span>
-        <span class="skill-tag">Phishing Analysis</span>
         <span class="skill-tag">Security Monitoring</span>
+        <span class="skill-tag">Phishing Analysis</span>
+        <span class="skill-tag">DLP</span>
+        <span class="skill-tag">Security Incident Investigation</span>
+        <span class="skill-tag">Vulnerability Assessment</span>
         <span class="skill-tag">IT Infrastructure Management</span>
-        <span class="skill-tag">Microsoft 365</span>
-        <span class="skill-tag">Azure</span>
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">Linux Administration</span>
-        <span class="skill-tag">Windows Server</span>
-        <span class="skill-tag">Keycloak / IAM</span>
-        <span class="skill-tag">Vulnerability Remediation</span>
-        <span class="skill-tag">Email Security</span>
         <span class="skill-tag">Cloud Security</span>
-        <span class="skill-tag">CIS Controls</span>
+        <span class="skill-tag">Information Security</span>
+        <span class="skill-tag">Network Security</span>
+        <span class="skill-tag">Risk Management</span>
         <span class="skill-tag">ISO 27001</span>
+        <span class="skill-tag">CIS Controls</span>
+        <span class="skill-tag">OWASP</span>
+        <span class="skill-tag">Cryptography</span>
+        <span class="skill-tag">Ethical Hacking</span>
+        <span class="skill-tag">Microsoft 365</span>
+        <span class="skill-tag">Microsoft Azure</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Azure Active Directory</span>
+        <span class="skill-tag">Keycloak / SSO / IAM</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Windows Server</span>
+        <span class="skill-tag">Bash</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">VMware</span>
+        <span class="skill-tag">VirtualBox</span>
+        <span class="skill-tag">Proxmox</span>
+        <span class="skill-tag">pfSense</span>
+        <span class="skill-tag">Nmap</span>
+        <span class="skill-tag">Nessus</span>
+        <span class="skill-tag">VPN</span>
+        <span class="skill-tag">Automation</span>
+        <span class="skill-tag">Project Management</span>
+        <span class="skill-tag">Troubleshooting</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">MinIO</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">C#</span>
       </div>
     </div>
   </section>
@@ -563,9 +612,13 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
             Website
           </a>
-          <a class="footer-link" href="#" title="Credly — link coming soon">
+          <a class="footer-link" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
             Credly
+          </a>
+          <a class="footer-link" href="#" title="GitHub — link coming soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            GitHub
           </a>
           <a class="footer-link" href="#" title="YouTube — link coming soon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
@@ -575,6 +628,30 @@
       </div>
     </div>
   </footer>
+
+  <!-- FLOATING SIDEBAR -->
+  <div class="float-bar">
+    <a class="float-btn" href="https://www.linkedin.com/in/diogenesrosario" target="_blank" rel="noopener">
+      <span class="float-tip">LinkedIn</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+    </a>
+    <a class="float-btn" href="mailto:diogenesrosario2001@gmail.com">
+      <span class="float-tip">Email</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    </a>
+    <a class="float-btn" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+      <span class="float-tip">Credly</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
+    </a>
+    <a class="float-btn" href="#" title="GitHub coming soon">
+      <span class="float-tip">GitHub</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+    </a>
+    <a class="float-btn" href="#" title="YouTube coming soon">
+      <span class="float-tip">YouTube</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
+    </a>
+  </div>
 
 </body>
 </html>
