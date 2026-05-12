@@ -261,12 +261,27 @@
     }
     .float-btn:hover .float-tip { opacity: 1; }
     @media (max-width: 1080px) { .float-bar { display: none; } }
+
+    /* SCROLL TO TOP BUTTON */
+    .scroll-top {
+      position: fixed; left: 1.5rem; bottom: 1.5rem; z-index: 99;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s, opacity 0.3s, transform 0.3s;
+      opacity: 0; pointer-events: none; transform: translateY(8px);
+      cursor: pointer;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .scroll-top:hover { border-color: var(--accent-bdr); color: var(--accent); background: var(--accent-bg); }
+    .scroll-top svg { width: 16px; height: 16px; }
   </style>
 </head>
 <body>
 
   <nav>
-    <span class="nav-name">Diogenes Rosario<span class="nav-dot"></span></span>
+    <a href="#" class="nav-name" style="text-decoration:none;">Diogenes Rosario<span class="nav-dot"></span></a>
     <div class="nav-links">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -600,7 +615,7 @@
           <p class="footer-sub">Cybersecurity Engineer · Santo Domingo, DR</p>
         </div>
         <div class="footer-links">
-          <a class="footer-link" href="mailto:diogenesrosario2001@gmail.com">
+          <a class="footer-link" href="mailto:contact.diogenesrosario@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
             Email
           </a>
@@ -616,11 +631,11 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
             Credly
           </a>
-          <a class="footer-link" href="#" title="GitHub — link coming soon">
+          <a class="footer-link" href="https://github.com/diogenesrosario" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
             GitHub
           </a>
-          <a class="footer-link" href="#" title="YouTube — link coming soon">
+          <a class="footer-link" href="https://www.youtube.com/@diogenesrosario" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
             YouTube
           </a>
@@ -635,7 +650,7 @@
       <span class="float-tip">LinkedIn</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
     </a>
-    <a class="float-btn" href="mailto:diogenesrosario2001@gmail.com">
+    <a class="float-btn" href="mailto:contact.diogenesrosario@gmail.com">
       <span class="float-tip">Email</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
     </a>
@@ -643,15 +658,26 @@
       <span class="float-tip">Credly</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
     </a>
-    <a class="float-btn" href="#" title="GitHub coming soon">
+    <a class="float-btn" href="https://github.com/diogenesrosario" target="_blank" rel="noopener">
       <span class="float-tip">GitHub</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
     </a>
-    <a class="float-btn" href="#" title="YouTube coming soon">
+    <a class="float-btn" href="https://www.youtube.com/@diogenesrosario" target="_blank" rel="noopener">
       <span class="float-tip">YouTube</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
     </a>
   </div>
 
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+  <script>
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 300);
+    });
+  </script>
 </body>
 </html>
