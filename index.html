@@ -276,6 +276,41 @@
     .scroll-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
     .scroll-top:hover { border-color: var(--accent-bdr); color: var(--accent); background: var(--accent-bg); }
     .scroll-top svg { width: 16px; height: 16px; }
+
+    /* STATS BAR */
+    .hero-stats {
+      display: flex; gap: 2rem; margin-bottom: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .stat { display: flex; flex-direction: column; gap: 3px; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px; font-weight: 700; letter-spacing: -0.03em;
+      color: var(--text); line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text-dim); letter-spacing: 0.04em; }
+    .stat-divider { width: 0.5px; background: var(--border); align-self: stretch; }
+
+    /* CERT FILTERS */
+    .cert-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.25rem; }
+    .cert-filter {
+      font-size: 12px; padding: 5px 13px; border-radius: 99px;
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      color: var(--text-muted); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .cert-filter:hover { border-color: var(--border-hov); color: var(--text); }
+    .cert-filter.active { background: var(--accent-bg); border-color: var(--accent-bdr); color: var(--accent); }
+
+    /* SCROLL ANIMATIONS */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -302,6 +337,27 @@
           <p><strong>ES</strong> Native</p>
           <p><strong>EN</strong> Intermediate</p>
           <p style="margin-top:8px; font-size:11px;">Santo Domingo, DR</p>
+        </div>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-num">5<span>+</span></span>
+          <span class="stat-label">Years experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">6<span>+</span></span>
+          <span class="stat-label">Certifications</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">8</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">25<span>+</span></span>
+          <span class="stat-label">Credentials</span>
         </div>
       </div>
       <p class="hero-bio">
@@ -334,11 +390,11 @@
 
   <section id="experience">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-num">01</span>
         <h2 class="section-title">Experience</h2>
       </div>
-      <div class="exp-list">
+      <div class="exp-list reveal">
         <div class="exp-item"><p class="exp-role">Cybersecurity Analyst</p></div>
         <div class="exp-item"><p class="exp-role">IT Infrastructure Manager</p></div>
         <div class="exp-item"><p class="exp-role">Cybersecurity Instructor Assistant</p></div>
@@ -349,11 +405,11 @@
 
   <section id="projects">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-num">02</span>
         <h2 class="section-title">Projects</h2>
       </div>
-      <div class="proj-grid">
+      <div class="proj-grid reveal">
         <div class="proj-card">
           <p class="proj-num">01</p>
           <p class="proj-title">Assessment of AI Implementation Impact on Cyber Resilience in University Security Departments</p>
@@ -400,116 +456,125 @@
 
   <section id="certifications">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-num">03</span>
         <h2 class="section-title">Credentials & Certifications</h2>
       </div>
-      <div class="cert-grid">
-        <a class="cert-card" href="https://www.credly.com/badges/fa3160ba-f0ab-433d-950f-8d1456624ba0/linked_in_profile" target="_blank" rel="noopener">
+      <div class="cert-filters reveal">
+        <button class="cert-filter active" onclick="filterCerts('all')">All</button>
+        <button class="cert-filter" onclick="filterCerts('Microsoft')">Microsoft</button>
+        <button class="cert-filter" onclick="filterCerts('Cisco')">Cisco</button>
+        <button class="cert-filter" onclick="filterCerts('CompTIA')">CompTIA</button>
+        <button class="cert-filter" onclick="filterCerts('Certiprof')">Certiprof</button>
+        <button class="cert-filter" onclick="filterCerts('TryHackMe')">TryHackMe</button>
+        <button class="cert-filter" onclick="filterCerts('Other')">Other</button>
+      </div>
+      <div class="cert-grid reveal" id="certGrid">
+        <a class="cert-card" data-issuer="CompTIA" href="https://www.credly.com/badges/fa3160ba-f0ab-433d-950f-8d1456624ba0/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CompTIA Security+ ce</p><p class="cert-issuer">CompTIA</p></div>
         </a>
-        <a class="cert-card" href="https://academy.hackandfix.com/certificate-page/?user=8133&course=53700" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://academy.hackandfix.com/certificate-page/?user=8133&course=53700" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Certified Phishing Prevention Specialist (CPPS)</p><p class="cert-issuer">Hack & Fix</p></div>
         </a>
-        <a class="cert-card" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/8A1981C494F96AA0?sharingId" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Microsoft" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/8A1981C494F96AA0?sharingId" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Azure Administrator Associate</p><p class="cert-issuer">Microsoft</p></div>
         </a>
-        <a class="cert-card" href="https://tryhackme.com/certificate/THM-BSQML80S1Y" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="TryHackMe" href="https://tryhackme.com/certificate/THM-BSQML80S1Y" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">SOC Level 1 Certificate</p><p class="cert-issuer">TryHackMe</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/74c40f5f-c3f2-4102-8e1f-e6acfc5a7b21/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Certiprof" href="https://www.credly.com/badges/74c40f5f-c3f2-4102-8e1f-e6acfc5a7b21/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Cybersecurity Awareness — CAPC</p><p class="cert-issuer">Certiprof</p></div>
         </a>
-        <a class="cert-card" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/F585083B74497631?sharingId" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Microsoft" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/F585083B74497631?sharingId" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Azure AI Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/e3f3eb2d-8232-4fc1-8a7e-0436e44ce2fc/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/badges/e3f3eb2d-8232-4fc1-8a7e-0436e44ce2fc/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">DevNet Associate</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/42cdd9d6-ea08-4fc3-a6ff-d421c4e3eef4/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/badges/42cdd9d6-ea08-4fc3-a6ff-d421c4e3eef4/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CyberOps Associate</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/6e351cb7-33ef-4866-8d85-ca5980109083/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/badges/6e351cb7-33ef-4866-8d85-ca5980109083/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CCNA: Enterprise Networking, Security & Automation</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/5dde7a04-4ac5-46c1-b4e7-f785bd62c425/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Certiprof" href="https://www.credly.com/badges/5dde7a04-4ac5-46c1-b4e7-f785bd62c425/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Remote Work Professional Certification — RWPC™</p><p class="cert-issuer">Certiprof</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/359d4260-3a13-431c-a315-2e567586e7c8/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://www.credly.com/badges/359d4260-3a13-431c-a315-2e567586e7c8/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">IT Academy: Network Virtualization Concepts</p><p class="cert-issuer">VMware</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/6b431845-cc0d-4fda-85ee-327f02827d97/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Certiprof" href="https://www.credly.com/badges/6b431845-cc0d-4fda-85ee-327f02827d97/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Scrum Foundation Professional Certificate — SFPC™</p><p class="cert-issuer">Certiprof</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/56482add-2435-4acd-b73e-8f23367e2843/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Certiprof" href="https://www.credly.com/badges/56482add-2435-4acd-b73e-8f23367e2843/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Lifelong Learning</p><p class="cert-issuer">Certiprof</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/929b3dcd-3a86-41d9-80ea-905753662ac2/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Microsoft" href="https://www.credly.com/badges/929b3dcd-3a86-41d9-80ea-905753662ac2/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Microsoft 365 Certified: Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
         </a>
-        <a class="cert-card" href="https://university.atlassian.com/student/award/ibpvamLahCHr2MmT1gKY88PN" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://university.atlassian.com/student/award/ibpvamLahCHr2MmT1gKY88PN" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Jira Fundamentals</p><p class="cert-issuer">Atlassian</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/eafd9572-e513-4f63-9284-d96bb13bee40/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Microsoft" href="https://www.credly.com/badges/eafd9572-e513-4f63-9284-d96bb13bee40/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Security, Compliance & Identity Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/6f84c94b-c6e8-4718-bead-a3f24648f605/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://www.credly.com/badges/6f84c94b-c6e8-4718-bead-a3f24648f605/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">(ISC)² Candidate</p><p class="cert-issuer">ISC2</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/badges/a4d53a7f-b323-446f-bf53-ba74ee6d4295/linked_in_profile" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Microsoft" href="https://www.credly.com/badges/a4d53a7f-b323-446f-bf53-ba74ee6d4295/linked_in_profile" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Azure Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1x8pDA0feHODwSP9McSY97hjKYjgprYde/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://drive.google.com/file/d/1x8pDA0feHODwSP9McSY97hjKYjgprYde/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Presentation Manager, Internet and Web Design</p><p class="cert-issuer">INFOTEP</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1na1NIYb0-tdpszQPs3Z0NzWZuv8-h5p8/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://drive.google.com/file/d/1na1NIYb0-tdpszQPs3Z0NzWZuv8-h5p8/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Office and Internet Software Operator</p><p class="cert-issuer">INFOTEP</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1C32EOqGnP00y6E9o2QZouXMHzakYMoDW/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://drive.google.com/file/d/1C32EOqGnP00y6E9o2QZouXMHzakYMoDW/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Programming Fundamentals with C#</p><p class="cert-issuer">Centros Tecnológicos Comunitarios</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/11ihiOW6SLxCgQk4CqZvaFiAf6I5FhGU8/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://drive.google.com/file/d/11ihiOW6SLxCgQk4CqZvaFiAf6I5FhGU8/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CCNA R&S: Scaling Networks</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1ajbpkIeVI7ypU1WzDGxPKzFmYBbV-jET/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://drive.google.com/file/d/1ajbpkIeVI7ypU1WzDGxPKzFmYBbV-jET/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CCNA R&S: Routing and Switching Essentials</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1huKGyj9pH3D8S2dD9XonA3ekXF85ImBh/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://drive.google.com/file/d/1huKGyj9pH3D8S2dD9XonA3ekXF85ImBh/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">CCNA R&S: Introduction to Networks</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://drive.google.com/file/d/1IbzDXqoweIOKTCQBoOR6HCscWFrEja1r/view?usp=sharing" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Other" href="https://drive.google.com/file/d/1IbzDXqoweIOKTCQBoOR6HCscWFrEja1r/view?usp=sharing" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">ISO/IEC 27001 Information Security Associate™</p><p class="cert-issuer">SkillFront</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Introduction to Cybersecurity</p><p class="cert-issuer">Cisco</p></div>
         </a>
-        <a class="cert-card" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">IT Essentials: PC Hardware and Software</p><p class="cert-issuer">Cisco</p></div>
         </a>
@@ -519,11 +584,11 @@
 
   <section id="education">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-num">04</span>
         <h2 class="section-title">Education</h2>
       </div>
-      <div class="edu-list">
+      <div class="edu-list reveal">
         <div class="edu-item">
           <div>
             <p class="edu-degree">Bachelor of Engineering in Cybersecurity</p>
@@ -558,11 +623,11 @@
 
   <section id="skills">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-num">05</span>
         <h2 class="section-title">Skills</h2>
       </div>
-      <div class="skills-wrap">
+      <div class="skills-wrap reveal">
         <span class="skill-tag">SOC Operations</span>
         <span class="skill-tag">Incident Response</span>
         <span class="skill-tag">Security Monitoring</span>
@@ -678,6 +743,29 @@
     window.addEventListener('scroll', () => {
       btn.classList.toggle('visible', window.scrollY > 300);
     });
+  </script>
+
+  <script>
+    // Cert filter
+    function filterCerts(issuer) {
+      document.querySelectorAll('.cert-filter').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('#certGrid .cert-card').forEach(card => {
+        const match = issuer === 'all' || card.dataset.issuer === issuer;
+        card.style.display = match ? 'flex' : 'none';
+      });
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
