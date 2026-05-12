@@ -1,608 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diogenes Rosario — Cybersecurity Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <title>Diogenes Website</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    :root {
+      --bg:          #0a0a0f;
+      --bg-card:     #111118;
+      --bg-card2:    #16161f;
+      --border:      rgba(255,255,255,0.07);
+      --border-hov:  rgba(255,255,255,0.14);
+      --text:        #f0eff5;
+      --text-muted:  #8a8a9a;
+      --text-dim:    #555565;
+      --accent:      #7b6cff;
+      --accent-bg:   rgba(123,108,255,0.12);
+      --accent-bdr:  rgba(123,108,255,0.3);
+      --green:       #3ecf72;
+      --green-bg:    rgba(62,207,114,0.1);
+      --green-bdr:   rgba(62,207,114,0.25);
+      --blue:        #5aacff;
+      --blue-bg:     rgba(90,172,255,0.1);
+      --blue-bdr:    rgba(90,172,255,0.25);
+      --amber:       #ffb740;
+      --amber-bg:    rgba(255,183,64,0.1);
+      --amber-bdr:   rgba(255,183,64,0.25);
+      --slate-bg:    rgba(255,255,255,0.06);
+      --slate-bdr:   rgba(255,255,255,0.12);
+      --radius:      10px;
+      --radius-lg:   14px;
+    }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    html { scroll-behavior: smooth; }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px; font-weight: 600;
+      color: var(--text); letter-spacing: -0.01em;
+    }
+    .nav-dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+      margin-left: 5px; vertical-align: middle; margin-bottom: 2px;
+    }
+    .nav-links { display: flex; gap: 1.75rem; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
 
-  <!-- =======================================================
-  * Template Name: Personal - v4.7.0
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+    #hero { padding: 130px 0 72px; border-bottom: 0.5px solid var(--border); }
+
+    .hero-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 2rem; margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 6vw, 60px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.03em; color: var(--text);
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-lang { text-align: right; flex-shrink: 0; padding-top: 4px; }
+    .hero-lang p {
+      font-size: 12px; color: var(--text-dim);
+      letter-spacing: 0.06em; text-transform: uppercase; line-height: 2.1;
+    }
+    .hero-lang strong { color: var(--text-muted); font-weight: 500; }
+    .hero-bio {
+      font-size: 15px; font-weight: 300; color: var(--text-muted);
+      line-height: 1.8; max-width: 580px; margin-bottom: 2rem;
+    }
+    .hero-status { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; padding: 5px 13px; border-radius: 99px; border: 0.5px solid;
+    }
+    .badge svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .badge-green { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bdr); }
+    .badge-blue  { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bdr); }
+    .badge-amber { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bdr); }
+    .badge-slate { background: var(--slate-bg);  color: var(--text-muted); border-color: var(--slate-bdr); }
+
+    section { padding: 68px 0; border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; }
+
+    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2.25rem; }
+    .section-num { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--accent); }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text);
+    }
+
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      padding: 1.1rem 0;
+      border-top: 0.5px solid var(--border);
+    }
+    .exp-item:first-child { border-top: none; padding-top: 0; }
+    .exp-role { font-size: 15px; font-weight: 500; color: var(--text); }
+
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .proj-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.4rem 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .proj-card:hover { border-color: var(--border-hov); background: var(--bg-card2); }
+    .proj-num { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 10px; }
+    .proj-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 12px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .proj-tag {
+      font-size: 11px; padding: 2px 8px; border-radius: 99px;
+      background: var(--accent-bg); color: var(--accent); border: 0.5px solid var(--accent-bdr);
+    }
+
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .cert-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem;
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: border-color 0.2s;
+      text-decoration: none; cursor: pointer;
+    }
+    .cert-card:hover { border-color: var(--accent-bdr); }
+    .cert-icon {
+      width: 34px; height: 34px; flex-shrink: 0; border-radius: 8px;
+      background: var(--amber-bg); display: flex; align-items: center; justify-content: center;
+    }
+    .cert-icon svg { width: 16px; height: 16px; color: var(--amber); }
+    .cert-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 3px; }
+    .cert-issuer { font-size: 12px; color: var(--text-dim); }
+
+    .edu-list { display: flex; flex-direction: column; }
+    .edu-item {
+      padding: 1.1rem 0;
+      border-top: 0.5px solid var(--border);
+    }
+    .edu-item:first-child { border-top: none; padding-top: 0; }
+    .edu-degree { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .edu-field { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+    .edu-award {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11.5px; color: var(--amber); margin-top: 7px;
+    }
+    .edu-award svg { width: 12px; height: 12px; }
+
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 13px; padding: 6px 14px; border-radius: var(--radius);
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      color: var(--text-muted); transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--border-hov); color: var(--text); }
+
+    footer { padding: 3rem 0; position: relative; z-index: 1; }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-name {
+      font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px;
+    }
+    .footer-sub { font-size: 13px; color: var(--text-dim); font-weight: 300; }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-link {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--text); }
+    .footer-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp 0.5s ease both; }
+    .hero-name    { animation: fadeUp 0.5s 0.1s ease both; }
+    .hero-bio     { animation: fadeUp 0.5s 0.2s ease both; }
+    .hero-status  { animation: fadeUp 0.5s 0.3s ease both; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .container { padding: 0 1.25rem; }
+      #hero { padding: 100px 0 56px; }
+      .hero-top { flex-direction: column; gap: 1rem; }
+      .hero-lang { text-align: left; }
+      .proj-grid  { grid-template-columns: 1fr; }
+      .cert-grid  { grid-template-columns: 1fr; }
+      .exp-item   { grid-template-columns: 1fr; gap: 0.3rem; }
+      .edu-item   { grid-template-columns: 1fr; gap: 0.3rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container">
-
-      <h1><a href="index.html">Diogenes Rosario De La Rosa</a></h1>
-
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>I am a young man passionate about <span>Technology and Cybersecurity.</span></h2>
-
-      
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="">About</a></li>
-          <!-- <li><a class="nav-link" href="#resume">Resume</a></li> -->
-          <li><a class="nav-link" href="">Portfolio</a></li>
-          <li><a class="nav-link" href="">Blog</a></li>
-          <li><a class="nav-link" href="">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="social-links">
-        <!--<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>-->
-        <a href="https://www.linkedin.com/in/diogenes-rosario-de-la-rosa" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        <a href="https://www.youtube.com/channel/UCbOMLaduLc_PsFFT-0PNyXw" class="youtube"><i class="bi bi-youtube"></i></a>
-        <a href="https://github.com/diogenesrosario" class="github"><i class="bi bi-github"></i></a>
-        <a href="https://www.twitch.tv/d1or0" class="twitch"><i class="bi bi-twitch"></i></a>
-
-      </div>
-
+  <nav>
+    <span class="nav-name">Diogenes Rosario<span class="nav-dot"></span></span>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
-  </header><!-- End Header -->
+  </nav>
 
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-      <div class="section-title">
-        <h2>About</h2>
-        <p>Learn more about me</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/16207553395371.png" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Cybersecurity Technologist</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-
-          <p>
-            Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-            Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
-          </p>
-        </div>
-      </div>
-
-    </div><!-- End About Me -->
-
-    <!-- ======= Counts ======= -->
-    <div class="counts container">
-
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Happy Clients</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-headset"></i>
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-award"></i>
-            <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Awards</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div><!-- End Counts -->
-
-    <!-- ======= Skills  ======= -->
-    <div class="skills container">
-
-      <div class="section-title">
-        <h2>Skills</h2>
-      </div>
-
-      <div class="row skills-content">
-
-        <div class="col-lg-6">
-
-          <div class="progress">
-            <span class="skill">HTML <i class="val">100%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">CSS <i class="val">90%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">JavaScript <i class="val">75%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="progress">
-            <span class="skill">PHP <i class="val">80%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">Photoshop <i class="val">55%</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div><!-- End Skills -->
-
-
-  </section><!-- End About Section -->
-
-  <!-- ======= Resume Section ======= -->
-  <section id="resume" class="resume">
+  <section id="hero">
     <div class="container">
-
-      <div class="section-title">
-        <h2>Resume</h2>
-        <p>Check My Resume</p>
+      <div class="hero-top">
+        <div>
+          <p class="hero-eyebrow">Cybersecurity Engineer · Cloud Infrastructure</p>
+          <h1 class="hero-name">Diogenes<br><span>Rosario</span></h1>
+        </div>
+        <div class="hero-lang">
+          <p><strong>ES</strong> Native</p>
+          <p><strong>EN</strong> Full Professional</p>
+          <p style="margin-top:8px; font-size:11px;">Santo Domingo, DR</p>
+        </div>
       </div>
+      <p class="hero-bio">
+        Cybersecurity professional with experience in SOC Tier 2 operations, security incident investigation, and cloud-based environments. Skilled in incident response, email security analysis, vulnerability remediation, and AI-related security investigations — with a strong background in Microsoft 365, Azure, AWS, and Linux/Windows infrastructure.
+      </p>
+      <div class="hero-status">
+        <span class="badge badge-green">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4"/></svg>
+          Available for projects
+        </span>
+        <span class="badge badge-blue">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg>
+          Full-time
+        </span>
+        <span class="badge badge-amber">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+          Part-time
+        </span>
+        <span class="badge badge-slate">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>
+          Remote preferred
+        </span>
+        <span class="badge badge-slate">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="9" height="7" rx="1"/><path d="M10 6l4-2v7l-4-2"/></svg>
+          Open to hybrid
+        </span>
+      </div>
+    </div>
+  </section>
 
-      <div class="row">
-        <div class="col-lg-6">
-          <h3 class="resume-title">Sumary</h3>
-          <div class="resume-item pb-0">
-            <h4>Alice Barkley</h4>
-            <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
-            <p>
-            <ul>
-              <li>Portland par 127,Orlando, FL</li>
-              <li>(123) 456-7891</li>
-              <li>alice.barkley@example.com</li>
-            </ul>
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="exp-list">
+        <div class="exp-item"><p class="exp-role">Cybersecurity Analyst</p></div>
+        <div class="exp-item"><p class="exp-role">IT Infrastructure Manager</p></div>
+        <div class="exp-item"><p class="exp-role">Cybersecurity Instructor Assistant</p></div>
+        <div class="exp-item"><p class="exp-role">Cybersecurity Content Development Manager</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <p class="proj-num">01</p>
+          <p class="proj-title">Assessment of AI Implementation Impact on Cyber Resilience in University Security Departments</p>
+          <div class="proj-tags"><span class="proj-tag">AI Security</span><span class="proj-tag">Research</span><span class="proj-tag">Cyber Resilience</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">02</p>
+          <p class="proj-title">ISMS Proposal Based on ISO/IEC 27001:2013 for Tourism Sector Organization</p>
+          <div class="proj-tags"><span class="proj-tag">ISO 27001</span><span class="proj-tag">ISMS</span><span class="proj-tag">Compliance</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">03</p>
+          <p class="proj-title">IAM Strategy with Single Sign-On (SSO) and Multi-Factor Authentication (MFA)</p>
+          <div class="proj-tags"><span class="proj-tag">IAM</span><span class="proj-tag">SSO</span><span class="proj-tag">MFA</span><span class="proj-tag">Identity</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">04</p>
+          <p class="proj-title">Implementation and Configuration of Azure Lab Services</p>
+          <div class="proj-tags"><span class="proj-tag">Azure</span><span class="proj-tag">Cloud</span><span class="proj-tag">Lab Services</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">05</p>
+          <p class="proj-title">Continuous Monitoring and Implementation of a Security Operations Platform</p>
+          <div class="proj-tags"><span class="proj-tag">SOC</span><span class="proj-tag">SIEM</span><span class="proj-tag">Monitoring</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">06</p>
+          <p class="proj-title">Moodle LMS — Implementation, Configuration & Management</p>
+          <div class="proj-tags"><span class="proj-tag">Moodle</span><span class="proj-tag">LMS</span><span class="proj-tag">Infrastructure</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">07</p>
+          <p class="proj-title">Open edX LMS — Implementation, Configuration & Management</p>
+          <div class="proj-tags"><span class="proj-tag">Open edX</span><span class="proj-tag">LMS</span><span class="proj-tag">Infrastructure</span></div>
+        </div>
+        <div class="proj-card">
+          <p class="proj-num">08</p>
+          <p class="proj-title">Cybersecurity Defense Strengthening via CIS Critical Security Controls v8</p>
+          <div class="proj-tags"><span class="proj-tag">CIS Controls</span><span class="proj-tag">Defense</span><span class="proj-tag">Hardening</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Credentials & Certifications</h2>
+      </div>
+      <div class="cert-grid">
+        <a class="cert-card" href="https://www.credly.com/badges/fa3160ba-f0ab-433d-950f-8d1456624ba0/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CompTIA Security+ ce</p><p class="cert-issuer">CompTIA</p></div>
+        </a>
+        <a class="cert-card" href="https://academy.hackandfix.com/certificate-page/?user=8133&course=53700" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Certified Phishing Prevention Specialist (CPPS)</p><p class="cert-issuer">Hack & Fix</p></div>
+        </a>
+        <a class="cert-card" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/8A1981C494F96AA0?sharingId" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Azure Administrator Associate</p><p class="cert-issuer">Microsoft</p></div>
+        </a>
+        <a class="cert-card" href="https://tryhackme.com/certificate/THM-BSQML80S1Y" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">SOC Level 1 Certificate</p><p class="cert-issuer">TryHackMe</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/74c40f5f-c3f2-4102-8e1f-e6acfc5a7b21/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Cybersecurity Awareness — CAPC</p><p class="cert-issuer">Certiprof</p></div>
+        </a>
+        <a class="cert-card" href="https://learn.microsoft.com/api/credentials/share/en-us/DiogenesRosario-1999/F585083B74497631?sharingId" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Azure AI Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/e3f3eb2d-8232-4fc1-8a7e-0436e44ce2fc/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">DevNet Associate</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/42cdd9d6-ea08-4fc3-a6ff-d421c4e3eef4/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CyberOps Associate</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/6e351cb7-33ef-4866-8d85-ca5980109083/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CCNA: Enterprise Networking, Security & Automation</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/5dde7a04-4ac5-46c1-b4e7-f785bd62c425/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Remote Work Professional Certification — RWPC™</p><p class="cert-issuer">Certiprof</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/359d4260-3a13-431c-a315-2e567586e7c8/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">IT Academy: Network Virtualization Concepts</p><p class="cert-issuer">VMware</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/6b431845-cc0d-4fda-85ee-327f02827d97/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Scrum Foundation Professional Certificate — SFPC™</p><p class="cert-issuer">Certiprof</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/56482add-2435-4acd-b73e-8f23367e2843/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Lifelong Learning</p><p class="cert-issuer">Certiprof</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/929b3dcd-3a86-41d9-80ea-905753662ac2/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Microsoft 365 Certified: Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
+        </a>
+        <a class="cert-card" href="https://university.atlassian.com/student/award/ibpvamLahCHr2MmT1gKY88PN" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Jira Fundamentals</p><p class="cert-issuer">Atlassian</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/eafd9572-e513-4f63-9284-d96bb13bee40/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Security, Compliance & Identity Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/6f84c94b-c6e8-4718-bead-a3f24648f605/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">(ISC)² Candidate</p><p class="cert-issuer">ISC2</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/badges/a4d53a7f-b323-446f-bf53-ba74ee6d4295/linked_in_profile" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Azure Fundamentals</p><p class="cert-issuer">Microsoft</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1x8pDA0feHODwSP9McSY97hjKYjgprYde/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Presentation Manager, Internet and Web Design</p><p class="cert-issuer">INFOTEP</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1na1NIYb0-tdpszQPs3Z0NzWZuv8-h5p8/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Office and Internet Software Operator</p><p class="cert-issuer">INFOTEP</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1C32EOqGnP00y6E9o2QZouXMHzakYMoDW/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Programming Fundamentals with C#</p><p class="cert-issuer">Centros Tecnológicos Comunitarios</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/11ihiOW6SLxCgQk4CqZvaFiAf6I5FhGU8/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CCNA R&S: Scaling Networks</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1ajbpkIeVI7ypU1WzDGxPKzFmYBbV-jET/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CCNA R&S: Routing and Switching Essentials</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1huKGyj9pH3D8S2dD9XonA3ekXF85ImBh/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">CCNA R&S: Introduction to Networks</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1IbzDXqoweIOKTCQBoOR6HCscWFrEja1r/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">ISO/IEC 27001 Information Security Associate™</p><p class="cert-issuer">SkillFront</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">Introduction to Cybersecurity</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+        <a class="cert-card" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+          <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
+          <div><p class="cert-name">IT Essentials: PC Hardware and Software</p><p class="cert-issuer">Cisco</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div>
+            <p class="edu-degree">Bachelor of Engineering in Cybersecurity</p>
+            <p class="edu-field">Cybersecurity Engineering</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <p class="edu-degree">Technologist in Information Security</p>
+            <p class="edu-field">Information Security</p>
+            <p class="edu-award">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Highest GPA — 14th Graduation Ceremony
             </p>
           </div>
-
-          <h3 class="resume-title">Education</h3>
-          <div class="resume-item">
-            <h4>Master of Fine Arts &amp; Graphic Design</h4>
-            <h5>2015 - 2016</h5>
-            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-            <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-          </div>
-          <div class="resume-item">
-            <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-            <h5>2010 - 2014</h5>
-            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-            <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+        </div>
+        <div class="edu-item">
+          <div>
+            <p class="edu-degree">High School IT Technician</p>
+            <p class="edu-field">Computer Science</p>
           </div>
         </div>
-        <div class="col-lg-6">
-          <h3 class="resume-title">Professional Experience</h3>
-          <div class="resume-item">
-            <h4>Senior graphic design specialist</h4>
-            <h5>2019 - Present</h5>
-            <p><em>Experion, New York, NY </em></p>
-            <p>
-            <ul>
-              <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-              <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-              <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-              <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-            </ul>
-            </p>
-          </div>
-          <div class="resume-item">
-            <h4>Graphic design specialist</h4>
-            <h5>2017 - 2018</h5>
-            <p><em>Stepping Stone Advertising, New York, NY</em></p>
-            <p>
-            <ul>
-              <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-              <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-              <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-              <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-            </ul>
-            </p>
+        <div class="edu-item">
+          <div>
+            <p class="edu-degree">English Language Program</p>
+            <p class="edu-field">Advanced English</p>
           </div>
         </div>
       </div>
-
     </div>
-  </section><!-- End Resume Section -->
+  </section>
 
-  <!-- ======= Services Section ======= -->
-  <section id="services" class="services">
+  <section id="skills">
     <div class="container">
-
-      <div class="section-title">
-        <h2>Services</h2>
-        <p>My Services</p>
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Skills</h2>
       </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4><a href="">Lorem Ipsum</a></h4>
-            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-file"></i></div>
-            <h4><a href="">Sed ut perspiciatis</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4><a href="">Magni Dolores</a></h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-world"></i></div>
-            <h4><a href="">Nemo Enim</a></h4>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-slideshow"></i></div>
-            <h4><a href="">Dele cardo</a></h4>
-            <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-arch"></i></div>
-            <h4><a href="">Divera don</a></h4>
-            <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-          </div>
-        </div>
-
+      <div class="skills-wrap">
+        <span class="skill-tag">SOC Operations</span>
+        <span class="skill-tag">Incident Response</span>
+        <span class="skill-tag">Phishing Analysis</span>
+        <span class="skill-tag">Security Monitoring</span>
+        <span class="skill-tag">IT Infrastructure Management</span>
+        <span class="skill-tag">Microsoft 365</span>
+        <span class="skill-tag">Azure</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Linux Administration</span>
+        <span class="skill-tag">Windows Server</span>
+        <span class="skill-tag">Keycloak / IAM</span>
+        <span class="skill-tag">Vulnerability Remediation</span>
+        <span class="skill-tag">Email Security</span>
+        <span class="skill-tag">Cloud Security</span>
+        <span class="skill-tag">CIS Controls</span>
+        <span class="skill-tag">ISO 27001</span>
       </div>
-
     </div>
-  </section><!-- End Services Section -->
+  </section>
 
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
+  <footer id="contact">
     <div class="container">
-
-      <div class="section-title">
-        <h2>Portfolio</h2>
-        <p>My Works</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Windows</li>
-            <li data-filter=".filter-web">Linux</li>
-          </ul>
+      <div class="footer-inner">
+        <div>
+          <p class="footer-name">Diogenes Rosario</p>
+          <p class="footer-sub">Cybersecurity Engineer · Santo Domingo, DR</p>
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="mailto:diogenesrosario2001@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Email
+          </a>
+          <a class="footer-link" href="https://www.linkedin.com/in/diogenesrosario" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+            LinkedIn
+          </a>
+          <a class="footer-link" href="https://diogenesrosario.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+            Website
+          </a>
+          <a class="footer-link" href="#" title="Credly — link coming soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
+            Credly
+          </a>
+          <a class="footer-link" href="#" title="YouTube — link coming soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
+            YouTube
+          </a>
         </div>
       </div>
-
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/uyuni.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Uyuni</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/bitlocker.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>BitLocker</h4>
-              <p>Microsoft</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/bitlocker.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="bitlocker.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
     </div>
-  </section><!-- End Portfolio Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
-      </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>My Address</h3>
-            <p>A108 Adam Street, New York, NY 535022</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email Me</h3>
-            <p>contact@example.com</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-phone-call"></i>
-            <h3>Call Me</h3>
-            <p>+1 5589 55488 55</p>
-          </div>
-        </div>
-      </div>
-
-      <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-        <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-          </div>
-          <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-          </div>
-        </div>
-        <div class="form-group mt-3">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-        </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
-
-    </div>
-  </section><!-- End Contact Section -->
-
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
-   <!--  Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
-  </div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  </footer>
 
 </body>
-
 </html>
