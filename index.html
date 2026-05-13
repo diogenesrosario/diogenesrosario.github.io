@@ -330,6 +330,81 @@
       transition: opacity 0.55s ease, transform 0.55s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* TOOLS CAROUSEL */
+    .carousel-wrapper {
+      overflow: hidden; position: relative;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .carousel-track {
+      display: flex; gap: 12px;
+      animation: scroll-left 30s linear infinite;
+      width: max-content;
+    }
+    .carousel-wrapper:hover .carousel-track { animation-play-state: paused; }
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tool-chip {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 16px;
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius); white-space: nowrap;
+      font-size: 13px; color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .tool-chip:hover { border-color: var(--accent-bdr); color: var(--text); }
+    .tool-chip img { width: 18px; height: 18px; object-fit: contain; filter: brightness(0.8); }
+    .tool-chip:hover img { filter: brightness(1); }
+
+    /* CONTACT FORM */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      align-items: start;
+    }
+    .contact-intro p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300; margin-bottom: 1.25rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--text); }
+    .contact-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .contact-form { display: flex; flex-direction: column; gap: 12px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 12px; color: var(--text-dim); letter-spacing: 0.05em; }
+    .form-input, .form-textarea {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 10px 14px;
+      font-size: 14px; color: var(--text); font-family: inherit;
+      transition: border-color 0.2s; outline: none; width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent-bdr); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-btn {
+      padding: 11px 20px; border-radius: var(--radius);
+      background: var(--accent); border: none;
+      color: #fff; font-size: 14px; font-weight: 500;
+      font-family: inherit; cursor: pointer;
+      transition: opacity 0.2s; align-self: flex-start;
+    }
+    .form-btn:hover { opacity: 0.85; }
+    .form-success {
+      display: none; font-size: 13px; color: var(--green);
+      padding: 10px 14px; border: 0.5px solid var(--green-bdr);
+      background: var(--green-bg); border-radius: var(--radius);
+    }
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -341,7 +416,7 @@
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
       <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact-form">Contact</a>
     </div>
   </nav>
 
@@ -691,44 +766,110 @@
     </div>
   </section>
 
-  <footer id="contact">
+  
+
+  <!-- TOOLS & TECHNOLOGIES -->
+  <section id="tools">
     <div class="container">
-      <div class="footer-inner">
+      <div class="section-header reveal">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Tools & Technologies</h2>
+      </div>
+      <p class="reveal" style="font-size:13.5px; color:var(--text-dim); margin-bottom:1.5rem; font-weight:300;">These are <em>some</em> of the tools and technologies I've used throughout my professional journey.</p>
+    </div>
+    <div class="carousel-wrapper reveal">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><path d="M33.1 6.1L12 82.6h19.6l20.7-57.4L33.1 6.1z" fill="#0078D4"/><path d="M36.8 6.1l21.1 58.5L84 82.6H48.5L36.8 6.1z" fill="#0078D4" opacity=".7"/></svg>Microsoft Azure</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.064.056.128.056.184 0 .08-.048.16-.152.24l-.504.336a.383.383 0 01-.208.072c-.08 0-.16-.04-.24-.112a2.49 2.49 0 01-.288-.376 6.212 6.212 0 01-.248-.472c-.624.736-1.408 1.104-2.352 1.104-.672 0-1.208-.192-1.6-.576-.392-.384-.592-.896-.592-1.536 0-.68.24-1.232.728-1.648.488-.416 1.136-.624 1.96-.624.272 0 .552.024.848.064.296.04.6.104.92.176v-.584c0-.608-.128-1.032-.376-1.28-.256-.248-.688-.368-1.304-.368-.28 0-.568.032-.864.104-.296.072-.584.16-.864.272a2.297 2.297 0 01-.28.104.488.488 0 01-.128.024c-.112 0-.168-.08-.168-.248v-.392c0-.128.016-.224.056-.28a.597.597 0 01.224-.168c.28-.144.616-.264 1.008-.36A4.88 4.88 0 015.2 6.2c.968 0 1.676.22 2.132.66.448.44.676 1.108.676 2.004v2.64l-.245.532zm-3.252.888c.264 0 .536-.048.824-.144.288-.096.544-.272.76-.512.128-.152.224-.32.272-.512.048-.192.08-.424.08-.696v-.336a6.804 6.804 0 00-.736-.136 6.03 6.03 0 00-.752-.048c-.536 0-.928.104-1.192.32-.264.216-.392.52-.392.92 0 .376.096.656.296.848.192.2.472.296.84.296zm6.44.848c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.312L7.58 7.044a1.41 1.41 0 01-.072-.32c0-.128.064-.2.192-.2h.784c.152 0 .256.024.312.08.064.048.112.16.16.312l1.336 5.268 1.24-5.268c.04-.16.088-.264.152-.312.064-.048.176-.08.32-.08h.64c.152 0 .256.024.32.08.064.048.12.16.152.312l1.256 5.332 1.376-5.332c.048-.16.104-.264.16-.312.064-.048.16-.08.304-.08h.744c.128 0 .2.064.2.2 0 .04-.008.08-.016.128a1.15 1.15 0 01-.056.2l-1.92 5.336c-.048.16-.104.264-.168.312-.064.048-.168.08-.304.08h-.688c-.152 0-.256-.024-.32-.08-.064-.056-.12-.16-.152-.32L12.1 8.404l-1.228 5.024c-.04.16-.088.264-.152.32-.064.056-.176.08-.32.08h-.688zm10.176.216c-.416 0-.832-.048-1.232-.144-.4-.096-.712-.2-.92-.32-.128-.072-.216-.152-.248-.224a.56.56 0 01-.048-.224v-.408c0-.168.064-.248.184-.248.048 0 .096.008.144.024.048.016.12.048.2.08.272.12.568.216.888.28.328.064.648.096.976.096.52 0 .92-.088 1.2-.264a.866.866 0 00.424-.772.785.785 0 00-.216-.556c-.144-.152-.416-.288-.808-.416l-1.16-.36c-.584-.184-1.016-.456-1.288-.816a1.953 1.953 0 01-.408-1.2c0-.348.072-.656.216-.92.144-.264.34-.496.588-.688.248-.2.528-.348.848-.448.32-.1.656-.148 1.008-.148.176 0 .36.008.536.032.184.024.352.056.512.096.152.04.296.088.432.136.136.048.24.096.312.144a.64.64 0 01.216.2.48.48 0 01.064.256v.376c0 .168-.064.256-.184.256a.836.836 0 01-.304-.096 3.653 3.653 0 00-1.544-.32c-.472 0-.84.072-1.096.224-.256.152-.384.384-.384.704 0 .216.08.4.24.552.16.152.456.304.88.44l1.136.36c.576.184.992.44 1.24.768.248.328.368.704.368 1.12 0 .356-.072.68-.208.968-.144.288-.344.54-.6.752-.256.22-.56.38-.912.496-.368.12-.76.176-1.184.176z" fill="#FF9900"/><path d="M20.168 17.284c-2.496 1.848-6.12 2.832-9.24 2.832-4.368 0-8.304-1.616-11.28-4.304-.232-.208-.024-.496.256-.336 3.208 1.864 7.176 2.992 11.272 2.992 2.768 0 5.808-.576 8.608-1.768.424-.184.776.28.384.584z" fill="#FF9900"/><path d="M21.136 16.168c-.32-.408-2.104-.192-2.904-.096-.248.032-.288-.184-.064-.344 1.424-1 3.76-.712 4.032-.376.272.344-.072 2.68-1.408 3.8-.208.176-.408.08-.312-.144.3-.744.968-2.432.656-2.84z" fill="#FF9900"/></svg>AWS</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>Microsoft 365</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#E8131A"/></svg>CrowdStrike</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0A1E6E"/><path d="M6 8h12M6 12h8M6 16h5" stroke="#6B84FF" stroke-width="2" stroke-linecap="round"/></svg>Sumo Logic</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="3" fill="#607078"/><path d="M4 12l3-5 3 5 3-5 3 5 3-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>VMware</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" fill="#E57000" opacity=".9"/><path d="M12 2l9 5-9 5-9-5 9-5z" fill="#FF8C00"/></svg>Proxmox</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" fill="#1A3A6B"/><path d="M6 12h12M12 8v8" stroke="#5588CC" stroke-width="1.5" stroke-linecap="round"/></svg>pfSense</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 6 6 6 10c0 2 .5 3.5 1.5 5L6 19h12l-1.5-4c1-1.5 1.5-3 1.5-5 0-4-2-8-6-8z" fill="#FCC624"/><circle cx="10" cy="10" r="1" fill="#333"/><circle cx="14" cy="10" r="1" fill="#333"/></svg>Linux</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 5.6L10.5 4.5v7H3V5.6zm0 12.8L10.5 19.5V12.5H3v5.9zm8.5 1.2L21 20.5V12.5h-9.5v7.1zm0-15.2v7.1H21V3.5L11.5 4.4z" fill="#0078D6"/></svg>Windows Server</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#7FBF4D" stroke-width="1.5"/><path d="M12 2v10l5 3" stroke="#7FBF4D" stroke-width="1.5" stroke-linecap="round"/></svg>Nmap</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#FF6633" opacity=".15"/><circle cx="12" cy="12" r="10" stroke="#FF6633" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#FF6633" stroke-width="1.5" stroke-linecap="round"/></svg>Nessus</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" fill="#4D4D4D"/><circle cx="12" cy="10" r="3" stroke="#AAD4F5" stroke-width="1.5"/><path d="M7 20c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#AAD4F5" stroke-width="1.5" stroke-linecap="round"/></svg>Keycloak</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 6 4 6 7v2h6v1H5C3 10 2 11.5 2 14s1 4 3 4h2v-2.5c0-1.5 1.5-2.5 3-2.5h4c1.5 0 3-1 3-2.5V7c0-2.5-2-5-5-5zm-1.5 3a1 1 0 110 2 1 1 0 010-2z" fill="#3776AB"/><path d="M12 22c4 0 6-2 6-5v-2h-6v-1h7c2 0 3-1.5 3-4s-1-4-3-4h-2v2.5c0 1.5-1.5 2.5-3 2.5H10c-1.5 0-3 1-3 2.5V17c0 2.5 2 5 5 5zm1.5-3a1 1 0 110-2 1 1 0 010 2z" fill="#FFD43B"/></svg>Python</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" fill="#1A1A1A"/><path d="M6 9l4 3-4 3M12 15h5" stroke="#4EAA25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Bash</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><path d="M33.1 6.1L12 82.6h19.6l20.7-57.4L33.1 6.1z" fill="#0078D4"/><path d="M36.8 6.1l21.1 58.5L84 82.6H48.5L36.8 6.1z" fill="#0078D4" opacity=".7"/></svg>Microsoft Azure</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.064.056.128.056.184 0 .08-.048.16-.152.24l-.504.336a.383.383 0 01-.208.072c-.08 0-.16-.04-.24-.112a2.49 2.49 0 01-.288-.376 6.212 6.212 0 01-.248-.472c-.624.736-1.408 1.104-2.352 1.104-.672 0-1.208-.192-1.6-.576-.392-.384-.592-.896-.592-1.536 0-.68.24-1.232.728-1.648.488-.416 1.136-.624 1.96-.624.272 0 .552.024.848.064.296.04.6.104.92.176v-.584c0-.608-.128-1.032-.376-1.28-.256-.248-.688-.368-1.304-.368-.28 0-.568.032-.864.104-.296.072-.584.16-.864.272a2.297 2.297 0 01-.28.104.488.488 0 01-.128.024c-.112 0-.168-.08-.168-.248v-.392c0-.128.016-.224.056-.28a.597.597 0 01.224-.168c.28-.144.616-.264 1.008-.36A4.88 4.88 0 015.2 6.2c.968 0 1.676.22 2.132.66.448.44.676 1.108.676 2.004v2.64l-.245.532zm-3.252.888c.264 0 .536-.048.824-.144.288-.096.544-.272.76-.512.128-.152.224-.32.272-.512.048-.192.08-.424.08-.696v-.336a6.804 6.804 0 00-.736-.136 6.03 6.03 0 00-.752-.048c-.536 0-.928.104-1.192.32-.264.216-.392.52-.392.92 0 .376.096.656.296.848.192.2.472.296.84.296zm6.44.848c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.312L7.58 7.044a1.41 1.41 0 01-.072-.32c0-.128.064-.2.192-.2h.784c.152 0 .256.024.312.08.064.048.112.16.16.312l1.336 5.268 1.24-5.268c.04-.16.088-.264.152-.312.064-.048.176-.08.32-.08h.64c.152 0 .256.024.32.08.064.048.12.16.152.312l1.256 5.332 1.376-5.332c.048-.16.104-.264.16-.312.064-.048.16-.08.304-.08h.744c.128 0 .2.064.2.2 0 .04-.008.08-.016.128a1.15 1.15 0 01-.056.2l-1.92 5.336c-.048.16-.104.264-.168.312-.064.048-.168.08-.304.08h-.688c-.152 0-.256-.024-.32-.08-.064-.056-.12-.16-.152-.32L12.1 8.404l-1.228 5.024c-.04.16-.088.264-.152.32-.064.056-.176.08-.32.08h-.688zm10.176.216c-.416 0-.832-.048-1.232-.144-.4-.096-.712-.2-.92-.32-.128-.072-.216-.152-.248-.224a.56.56 0 01-.048-.224v-.408c0-.168.064-.248.184-.248.048 0 .096.008.144.024.048.016.12.048.2.08.272.12.568.216.888.28.328.064.648.096.976.096.52 0 .92-.088 1.2-.264a.866.866 0 00.424-.772.785.785 0 00-.216-.556c-.144-.152-.416-.288-.808-.416l-1.16-.36c-.584-.184-1.016-.456-1.288-.816a1.953 1.953 0 01-.408-1.2c0-.348.072-.656.216-.92.144-.264.34-.496.588-.688.248-.2.528-.348.848-.448.32-.1.656-.148 1.008-.148.176 0 .36.008.536.032.184.024.352.056.512.096.152.04.296.088.432.136.136.048.24.096.312.144a.64.64 0 01.216.2.48.48 0 01.064.256v.376c0 .168-.064.256-.184.256a.836.836 0 01-.304-.096 3.653 3.653 0 00-1.544-.32c-.472 0-.84.072-1.096.224-.256.152-.384.384-.384.704 0 .216.08.4.24.552.16.152.456.304.88.44l1.136.36c.576.184.992.44 1.24.768.248.328.368.704.368 1.12 0 .356-.072.68-.208.968-.144.288-.344.54-.6.752-.256.22-.56.38-.912.496-.368.12-.76.176-1.184.176z" fill="#FF9900"/><path d="M20.168 17.284c-2.496 1.848-6.12 2.832-9.24 2.832-4.368 0-8.304-1.616-11.28-4.304-.232-.208-.024-.496.256-.336 3.208 1.864 7.176 2.992 11.272 2.992 2.768 0 5.808-.576 8.608-1.768.424-.184.776.28.384.584z" fill="#FF9900"/><path d="M21.136 16.168c-.32-.408-2.104-.192-2.904-.096-.248.032-.288-.184-.064-.344 1.424-1 3.76-.712 4.032-.376.272.344-.072 2.68-1.408 3.8-.208.176-.408.08-.312-.144.3-.744.968-2.432.656-2.84z" fill="#FF9900"/></svg>AWS</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>Microsoft 365</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#E8131A"/></svg>CrowdStrike</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0A1E6E"/><path d="M6 8h12M6 12h8M6 16h5" stroke="#6B84FF" stroke-width="2" stroke-linecap="round"/></svg>Sumo Logic</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="3" fill="#607078"/><path d="M4 12l3-5 3 5 3-5 3 5 3-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>VMware</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" fill="#E57000" opacity=".9"/><path d="M12 2l9 5-9 5-9-5 9-5z" fill="#FF8C00"/></svg>Proxmox</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" fill="#1A3A6B"/><path d="M6 12h12M12 8v8" stroke="#5588CC" stroke-width="1.5" stroke-linecap="round"/></svg>pfSense</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 6 6 6 10c0 2 .5 3.5 1.5 5L6 19h12l-1.5-4c1-1.5 1.5-3 1.5-5 0-4-2-8-6-8z" fill="#FCC624"/><circle cx="10" cy="10" r="1" fill="#333"/><circle cx="14" cy="10" r="1" fill="#333"/></svg>Linux</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 5.6L10.5 4.5v7H3V5.6zm0 12.8L10.5 19.5V12.5H3v5.9zm8.5 1.2L21 20.5V12.5h-9.5v7.1zm0-15.2v7.1H21V3.5L11.5 4.4z" fill="#0078D6"/></svg>Windows Server</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#7FBF4D" stroke-width="1.5"/><path d="M12 2v10l5 3" stroke="#7FBF4D" stroke-width="1.5" stroke-linecap="round"/></svg>Nmap</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#FF6633" opacity=".15"/><circle cx="12" cy="12" r="10" stroke="#FF6633" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#FF6633" stroke-width="1.5" stroke-linecap="round"/></svg>Nessus</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" fill="#4D4D4D"/><circle cx="12" cy="10" r="3" stroke="#AAD4F5" stroke-width="1.5"/><path d="M7 20c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#AAD4F5" stroke-width="1.5" stroke-linecap="round"/></svg>Keycloak</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 6 4 6 7v2h6v1H5C3 10 2 11.5 2 14s1 4 3 4h2v-2.5c0-1.5 1.5-2.5 3-2.5h4c1.5 0 3-1 3-2.5V7c0-2.5-2-5-5-5zm-1.5 3a1 1 0 110 2 1 1 0 010-2z" fill="#3776AB"/><path d="M12 22c4 0 6-2 6-5v-2h-6v-1h7c2 0 3-1.5 3-4s-1-4-3-4h-2v2.5c0 1.5-1.5 2.5-3 2.5H10c-1.5 0-3 1-3 2.5V17c0 2.5 2 5 5 5zm1.5-3a1 1 0 110-2 1 1 0 010 2z" fill="#FFD43B"/></svg>Python</div>
+        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" fill="#1A1A1A"/><path d="M6 9l4 3-4 3M12 15h5" stroke="#4EAA25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Bash</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact-form">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Get in Touch</h2>
+      </div>
+      <div class="contact-grid reveal">
+        <div class="contact-intro">
+          <p>Interested in working together, have a question, or just want to connect? Send me a message and I'll get back to you as soon as possible.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:contact.diogenesrosario@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              contact.diogenesrosario@gmail.com
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/diogenesrosario" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+              linkedin.com/in/diogenesrosario
+            </a>
+            <a class="contact-link" href="https://github.com/diogenesrosario" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              github.com/diogenesrosario
+            </a>
+          </div>
+        </div>
         <div>
-          <p class="footer-name">Diogenes Rosario</p>
-          <p class="footer-sub">Cybersecurity Engineer · Santo Domingo, DR</p>
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-group">
+              <label class="form-label" for="name">NAME</label>
+              <input class="form-input" id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">EMAIL</label>
+              <input class="form-input" id="email" name="email" type="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">MESSAGE</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button class="form-btn" type="submit">Send message →</button>
+            <div class="form-success" id="formSuccess">Message sent! I'll get back to you soon.</div>
+          </form>
         </div>
-        <div class="footer-links">
-          <a class="footer-link" href="mailto:contact.diogenesrosario@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-            Email
-          </a>
-          <a class="footer-link" href="https://www.linkedin.com/in/diogenesrosario" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
-            LinkedIn
-          </a>
-          <a class="footer-link" href="https://diogenesrosario.com" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
-            Website
-          </a>
-          <a class="footer-link" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
-            Credly
-          </a>
-          <a class="footer-link" href="https://github.com/diogenesrosario" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            GitHub
-          </a>
-          <a class="footer-link" href="https://www.youtube.com/@diogenesrosario" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15"/></svg>
-            YouTube
-          </a>
-        </div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding: 1.5rem 0; border-top: 0.5px solid var(--border);">
+        <span style="font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:var(--text); letter-spacing:-0.01em;">Diogenes Rosario<span class="nav-dot"></span></span>
+        <span style="font-size:12px; color:var(--text-dim);">© 2026 · Cybersecurity Engineer · Santo Domingo, DR</span>
       </div>
     </div>
   </footer>
 
-  <!-- FLOATING SIDEBAR -->
+    <!-- FLOATING SIDEBAR -->
   <div class="float-bar">
     <a class="float-btn" href="https://www.linkedin.com/in/diogenesrosario" target="_blank" rel="noopener">
       <span class="float-tip">LinkedIn</span>
@@ -772,6 +913,36 @@
       document.querySelectorAll('#certGrid .cert-card').forEach(card => {
         const match = issuer === 'all' || card.dataset.issuer === issuer;
         card.style.display = match ? 'flex' : 'none';
+      });
+    }
+
+    // Contact form
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('.form-btn');
+        const success = document.getElementById('formSuccess');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            success.style.display = 'block';
+            btn.textContent = 'Sent ✓';
+          } else {
+            btn.textContent = 'Error — try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Error — try again';
+          btn.disabled = false;
+        }
       });
     }
 
