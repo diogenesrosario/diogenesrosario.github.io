@@ -115,7 +115,7 @@
     .hero-lang strong { color: var(--text-muted); font-weight: 500; }
     .hero-bio {
       font-size: 15px; font-weight: 300; color: var(--text-muted);
-      line-height: 1.8; max-width: 640px; margin-bottom: 2rem;
+      line-height: 1.8; max-width: 100%; margin-bottom: 2rem;
     }
     .hero-status { display: flex; flex-wrap: wrap; gap: 8px; }
     .badge {
@@ -435,6 +435,26 @@
       margin-bottom: 8px;
     }
     .proj-thesis svg { width: 11px; height: 11px; }
+
+    /* TYPING ANIMATION */
+    .typing-wrap {
+      display: flex; align-items: center; gap: 2px;
+      height: 22px; margin-bottom: 1.25rem;
+    }
+    .typing-text {
+      font-size: 13px; font-weight: 400;
+      color: var(--accent); font-family: monospace;
+      letter-spacing: 0.04em;
+    }
+    .typing-cursor {
+      display: inline-block; width: 2px; height: 14px;
+      background: var(--accent); margin-left: 2px;
+      animation: blink 0.8s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -456,6 +476,11 @@
         <div>
           <p class="hero-eyebrow">Cybersecurity Engineer · Blue Team · Cloud Infrastructure</p>
           <h1 class="hero-name">Diogenes<br><span>Rosario</span></h1>
+        <div class="typing-wrap">
+          <span style="font-family:monospace; font-size:13px; color:var(--text-dim); user-select:none;">root@sec:~#&nbsp;</span>
+          <span class="typing-text" id="typingText"></span>
+          <span class="typing-cursor"></span>
+        </div>
         </div>
         <div class="hero-lang">
           <p><strong>ES</strong> Native</p>
@@ -1047,6 +1072,42 @@
     }
 
 
+
+    // Typing animation
+    const phrases = [
+      "Defend. Detect. Respond.",
+      "Think like an attacker, act like a defender.",
+      "Always watching. Always protecting.",
+      "Security is not a product, it's a process.",
+      "Blue Team mindset.",
+      "Securing systems, one layer at a time.",
+      "Detect threats before they become incidents.",
+      "Defense in depth, always.",
+    ];
+    let phraseIndex = 0, charIndex = 0, deleting = false;
+    const typingEl = document.getElementById('typingText');
+
+    function type() {
+      const current = phrases[phraseIndex];
+      if (!deleting) {
+        typingEl.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(type, 2200);
+          return;
+        }
+      } else {
+        typingEl.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      }
+      setTimeout(type, deleting ? 40 : 70);
+    }
+    setTimeout(type, 800);
     // Project card toggle
     function toggleProj(card) {
       card.classList.toggle('open');
