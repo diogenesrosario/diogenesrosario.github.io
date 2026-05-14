@@ -422,6 +422,17 @@
       transition: transform 0.3s ease; margin-top: 2px;
     }
     .proj-card.open .proj-arrow { transform: rotate(180deg); }
+
+    /* THESIS BADGE */
+    .proj-thesis {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 500;
+      padding: 3px 9px; border-radius: 99px;
+      background: var(--amber-bg); color: var(--amber);
+      border: 0.5px solid var(--amber-bdr);
+      margin-bottom: 8px;
+    }
+    .proj-thesis svg { width: 11px; height: 11px; }
   </style>
 </head>
 <body>
@@ -523,6 +534,7 @@
       <div class="proj-grid reveal">
         <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">01</p>
+          <span class="proj-thesis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Bachelor's Thesis</span>
           <div class="proj-toggle">
             <p class="proj-title">Assessment of AI Implementation Impact on Cyber Resilience in University Security Departments</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -532,6 +544,7 @@
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">02</p>
+          <span class="proj-thesis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Technologist Thesis</span>
           <div class="proj-toggle">
             <p class="proj-title">ISMS Proposal Based on ISO/IEC 27001:2013 for Tourism Sector Organization</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -740,7 +753,7 @@
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">ISO/IEC 27001 Information Security Associate™</p><p class="cert-issuer">SkillFront</p></div>
         </a>
-        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/users/diogenesrosario/badges#credly" target="_blank" rel="noopener">
+        <a class="cert-card" data-issuer="Cisco" href="https://www.credly.com/badges/2144ddb0-3b5c-40a9-a54d-8be307df791b/public_url" target="_blank" rel="noopener">
           <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg></div>
           <div><p class="cert-name">Introduction to Cybersecurity</p><p class="cert-issuer">Cisco</p></div>
         </a>
