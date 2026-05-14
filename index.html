@@ -405,6 +405,23 @@
     @media (max-width: 640px) {
       .contact-grid { grid-template-columns: 1fr; }
     }
+
+    /* EXPANDABLE PROJECT CARDS */
+    .proj-card { cursor: pointer; }
+    .proj-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+      font-weight: 300; overflow: hidden;
+      max-height: 0; opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+      margin-top: 0;
+    }
+    .proj-card.open .proj-desc { max-height: 120px; opacity: 1; margin-top: 10px; }
+    .proj-toggle { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .proj-arrow {
+      width: 16px; height: 16px; flex-shrink: 0; color: var(--text-dim);
+      transition: transform 0.3s ease; margin-top: 2px;
+    }
+    .proj-card.open .proj-arrow { transform: rotate(180deg); }
   </style>
 </head>
 <body>
@@ -504,45 +521,104 @@
         <h2 class="section-title">Projects</h2>
       </div>
       <div class="proj-grid reveal">
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">01</p>
-          <p class="proj-title">Assessment of AI Implementation Impact on Cyber Resilience in University Security Departments</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Assessment of AI Implementation Impact on Cyber Resilience in University Security Departments</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">AI Security</span><span class="proj-tag">Research</span><span class="proj-tag">Cyber Resilience</span></div>
+          <p class="proj-desc">Researched and analyzed the effects of AI adoption on cybersecurity resilience within a university's security department, identifying risks and opportunities for defensive improvement.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">02</p>
-          <p class="proj-title">ISMS Proposal Based on ISO/IEC 27001:2013 for Tourism Sector Organization</p>
+          <div class="proj-toggle">
+            <p class="proj-title">ISMS Proposal Based on ISO/IEC 27001:2013 for Tourism Sector Organization</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">ISO 27001</span><span class="proj-tag">ISMS</span><span class="proj-tag">Compliance</span></div>
+          <p class="proj-desc">Designed a comprehensive Information Security Management System proposal for a tourism sector organization, aligned with ISO/IEC 27001:2013 standards and tailored to the industry's specific risk profile.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">03</p>
-          <p class="proj-title">IAM Strategy with Single Sign-On (SSO) and Multi-Factor Authentication (MFA)</p>
+          <div class="proj-toggle">
+            <p class="proj-title">IAM Strategy with Single Sign-On (SSO) and Multi-Factor Authentication (MFA)</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">IAM</span><span class="proj-tag">SSO</span><span class="proj-tag">MFA</span><span class="proj-tag">Identity</span></div>
+          <p class="proj-desc">Developed and implemented an Identity and Access Management strategy, enforcing Multi-Factor Authentication across all users and deploying Single Sign-On to centralize authentication across multiple systems and applications.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">04</p>
-          <p class="proj-title">Implementation and Configuration of Azure Lab Services</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Implementation and Configuration of Azure Lab Services</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">Azure</span><span class="proj-tag">Cloud</span><span class="proj-tag">Lab Services</span></div>
+          <p class="proj-desc">Deployed and configured Azure Lab Services environments to support hands-on technical training, managing resource allocation, access policies and cost controls.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">05</p>
-          <p class="proj-title">Continuous Monitoring and Implementation of a Security Operations Platform</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Continuous Monitoring and Implementation of a Security Operations Platform</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">SOC</span><span class="proj-tag">SIEM</span><span class="proj-tag">Monitoring</span></div>
+          <p class="proj-desc">Implemented and maintained a cloud-based Security Operations Platform with continuous monitoring capabilities, enabling real-time threat detection, log management and incident response workflows.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">06</p>
-          <p class="proj-title">Moodle LMS — Implementation, Configuration & Management</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Moodle LMS — Implementation, Configuration &amp; Management</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">Moodle</span><span class="proj-tag">LMS</span><span class="proj-tag">Infrastructure</span></div>
+          <p class="proj-desc">Installed, configured and managed a Moodle Learning Management System, handling platform administration, user management, integrations and ongoing maintenance.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">07</p>
-          <p class="proj-title">Open edX LMS — Implementation, Configuration & Management</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Open edX LMS — Implementation, Configuration &amp; Management</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">Open edX</span><span class="proj-tag">LMS</span><span class="proj-tag">Infrastructure</span></div>
+          <p class="proj-desc">Deployed and managed an Open edX Learning Management System, overseeing infrastructure setup, customization, and operational continuity.</p>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">08</p>
-          <p class="proj-title">Cybersecurity Defense Strengthening via CIS Critical Security Controls v8</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Cybersecurity Defense Strengthening via CIS Critical Security Controls v8</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
           <div class="proj-tags"><span class="proj-tag">CIS Controls</span><span class="proj-tag">Defense</span><span class="proj-tag">Hardening</span></div>
+          <p class="proj-desc">Participated in the implementation of CIS Critical Security Controls v8 to systematically strengthen the organization's cybersecurity defenses across people, processes and technology.</p>
+        </div>
+        <div class="proj-card" onclick="toggleProj(this)">
+          <p class="proj-num">09</p>
+          <div class="proj-toggle">
+            <p class="proj-title">SSL Certificate Management</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="proj-tags"><span class="proj-tag">SSL</span><span class="proj-tag">Infrastructure</span><span class="proj-tag">Security</span></div>
+          <p class="proj-desc">Configuration and maintenance of SSL certificates across 10+ servers, ensuring continuous availability and validity.</p>
+        </div>
+        <div class="proj-card" onclick="toggleProj(this)">
+          <p class="proj-num">10</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Dedicated Server Infrastructure</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="proj-tags"><span class="proj-tag">Infrastructure</span><span class="proj-tag">Proxmox</span><span class="proj-tag">Virtualization</span></div>
+          <p class="proj-desc">Installation, configuration, maintenance and monitoring of dedicated server infrastructure of up to 10 servers, including virtualization environments for lab and training purposes.</p>
+        </div>
+        <div class="proj-card" onclick="toggleProj(this)">
+          <p class="proj-num">11</p>
+          <div class="proj-toggle">
+            <p class="proj-title">Cloud Security Coverage Monitoring</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="proj-tags"><span class="proj-tag">Cloud Security</span><span class="proj-tag">Monitoring</span><span class="proj-tag">Agents</span></div>
+          <p class="proj-desc">Monitored security agent deployment across cloud instances and container orchestration workloads to ensure continuous security coverage across the infrastructure.</p>
         </div>
       </div>
     </div>
@@ -953,6 +1029,12 @@
         const match = issuer === 'all' || card.dataset.issuer === issuer;
         card.style.display = match ? 'flex' : 'none';
       });
+    }
+
+
+    // Project card toggle
+    function toggleProj(card) {
+      card.classList.toggle('open');
     }
 
     // Contact form
