@@ -999,6 +999,8 @@
         </div>
         <div>
           <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdabrogv" method="POST">
+            <!-- Honeypot trap for bots -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="form-group">
               <label class="form-label" for="name">NAME</label>
               <input class="form-input" id="name" name="name" type="text" placeholder="Your name" required />
