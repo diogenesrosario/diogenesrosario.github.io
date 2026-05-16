@@ -1015,7 +1015,7 @@
               <textarea class="form-textarea" id="message" name="message" placeholder="What's on your mind?" required></textarea>
             </div>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAADQFsIMZZCzDte0w" data-theme="dark"></div>
-            <button class="form-btn" type="submit">Send message →</button>
+            <button class="form-btn" type="button" id="formSubmitBtn">Send message →</button>
             <div class="form-success" id="formSuccess">Message sent! I'll get back to you soon.</div>
           </form>
         </div>
@@ -1122,14 +1122,21 @@
     }
 
     // Contact form
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('.form-btn');
+    const formBtn = document.getElementById('formSubmitBtn');
+    if (formBtn) {
+      formBtn.addEventListener('click', async () => {
+        const form = document.getElementById('contactForm');
         const success = document.getElementById('formSuccess');
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
+        // Validate fields
+        const name = form.querySelector('#name').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const message = form.querySelector('#message').value.trim();
+        if (!name || !email || !message) {
+          alert('Please fill in all fields.');
+          return;
+        }
+        formBtn.textContent = 'Sending...';
+        formBtn.disabled = true;
         try {
           const res = await fetch(form.action, {
             method: 'POST',
@@ -1139,14 +1146,14 @@
           if (res.ok) {
             form.reset();
             success.style.display = 'block';
-            btn.textContent = 'Sent ✓';
+            formBtn.textContent = 'Sent ✓';
           } else {
-            btn.textContent = 'Error — try again';
-            btn.disabled = false;
+            formBtn.textContent = 'Error — try again';
+            formBtn.disabled = false;
           }
         } catch(err) {
-          btn.textContent = 'Error — try again';
-          btn.disabled = false;
+          formBtn.textContent = 'Error — try again';
+          formBtn.disabled = false;
         }
       });
     }
