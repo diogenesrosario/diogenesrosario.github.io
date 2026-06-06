@@ -457,6 +457,25 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
+
+    /* LANG TOOLTIP */
+    .lang-wrap { display: inline-flex; align-items: center; gap: 5px; }
+    .lang-info {
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--border); color: var(--text-dim);
+      font-size: 10px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: default; position: relative; flex-shrink: 0;
+    }
+    .lang-info .lang-tooltip {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--bg-card2); border: 0.5px solid var(--border);
+      color: var(--text-muted); font-size: 11px; font-weight: 400;
+      white-space: nowrap; padding: 6px 10px; border-radius: 8px;
+      opacity: 0; pointer-events: none; transition: opacity 0.15s;
+      z-index: 200; letter-spacing: 0;
+    }
+    .lang-info:hover .lang-tooltip { opacity: 1; }
   </style>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -464,12 +483,20 @@
 
   <nav>
     <a href="#" class="nav-name" style="text-decoration:none;">Diogenes Rosario<span class="nav-dot"></span></a>
-    <div class="nav-links">
+    <div style="display:flex;align-items:center;gap:1.5rem;">
+      <div class="lang-wrap">
+        <button onclick="window.toggleLang()" style="font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-bg);border:0.5px solid var(--accent-bdr);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:inherit;letter-spacing:0.06em;" id="langBtn">🌐 EN</button>
+        <span class="lang-info">i
+          <span class="lang-tooltip">Switch between English and Spanish<br>Cambia entre inglés y español</span>
+        </span>
+      </div>
+      <div class="nav-links">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
       <a href="#education">Education</a>
       <a href="#contact-form">Contact</a>
+    </div>
     </div>
   </nav>
 
@@ -594,7 +621,7 @@
         <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">04</p>
           <div class="proj-toggle">
-            <p class="proj-title">Security Operations Documentation (SOPs & Playbooks)</p>
+            <p class="proj-title">Security Operations Documentation (SOPs &amp; Playbooks)</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </div>
           <div class="proj-tags"><span class="proj-tag">SOC</span><span class="proj-tag">Documentation</span><span class="proj-tag">Playbooks</span></div>
@@ -603,7 +630,7 @@
         <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">05</p>
           <div class="proj-toggle">
-            <p class="proj-title">SIEM Tuning & Rule Creation</p>
+            <p class="proj-title">SIEM Tuning &amp; Rule Creation</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </div>
           <div class="proj-tags"><span class="proj-tag">SIEM</span><span class="proj-tag">Detection Rules</span><span class="proj-tag">Tuning</span></div>
@@ -621,6 +648,15 @@
         <div class="proj-card" onclick="toggleProj(this)">
           <p class="proj-num">07</p>
           <div class="proj-toggle">
+            <p class="proj-title">VPN Infrastructure Configuration</p>
+            <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="proj-tags"><span class="proj-tag">VPN</span><span class="proj-tag">OpenVPN</span><span class="proj-tag">pfSense</span><span class="proj-tag">Infrastructure</span></div>
+          <p class="proj-desc">Configured and managed VPN infrastructure using OpenVPN integrated with pfSense, enabling secure remote access for users across the organization.</p>
+        </div>
+        <div class="proj-card" onclick="toggleProj(this)">
+          <p class="proj-num">08</p>
+          <div class="proj-toggle">
             <p class="proj-title">Implementation and Configuration of Azure Lab Services</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </div>
@@ -628,7 +664,7 @@
           <p class="proj-desc">Deployed and configured Azure Lab Services environments to support hands-on technical training, managing resource allocation, access policies and cost controls.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">08</p>
+          <p class="proj-num">09</p>
           <div class="proj-toggle">
             <p class="proj-title">Continuous Monitoring and Implementation of a Security Operations Platform</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -637,7 +673,7 @@
           <p class="proj-desc">Implemented and maintained a cloud-based Security Operations Platform with continuous monitoring capabilities, enabling real-time threat detection, log management and incident response workflows.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">09</p>
+          <p class="proj-num">10</p>
           <div class="proj-toggle">
             <p class="proj-title">Moodle LMS — Implementation, Configuration &amp; Management</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -646,7 +682,7 @@
           <p class="proj-desc">Installed, configured and managed a Moodle Learning Management System, handling platform administration, user management, integrations and ongoing maintenance.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">10</p>
+          <p class="proj-num">11</p>
           <div class="proj-toggle">
             <p class="proj-title">Open edX LMS — Implementation, Configuration &amp; Management</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -655,7 +691,7 @@
           <p class="proj-desc">Deployed and managed an Open edX Learning Management System, overseeing infrastructure setup, customization, and operational continuity.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">11</p>
+          <p class="proj-num">12</p>
           <div class="proj-toggle">
             <p class="proj-title">Cybersecurity Defense Strengthening via CIS Critical Security Controls v8</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -664,7 +700,7 @@
           <p class="proj-desc">Participated in the implementation of CIS Critical Security Controls v8 to systematically strengthen the organization's cybersecurity defenses across people, processes and technology.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">12</p>
+          <p class="proj-num">13</p>
           <div class="proj-toggle">
             <p class="proj-title">SSL Certificate Management</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -673,7 +709,7 @@
           <p class="proj-desc">Configuration and maintenance of SSL certificates across 10+ servers, ensuring continuous availability and validity.</p>
         </div>
         <div class="proj-card" onclick="toggleProj(this)">
-          <p class="proj-num">13</p>
+          <p class="proj-num">14</p>
           <div class="proj-toggle">
             <p class="proj-title">Dedicated Server Infrastructure</p>
             <svg class="proj-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -917,74 +953,78 @@
     </div>
     <div class="carousel-wrapper reveal">
       <div class="carousel-track" id="carouselTrack">
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="azG1" x1="0.672" y1="0.04" x2="0.379" y2="1.023" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#114a8b"/><stop offset="1" stop-color="#0669bc"/></linearGradient><linearGradient id="azG2" x1="0.535" y1="0.078" x2="0.476" y2="0.984" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#3ccbf4"/><stop offset="1" stop-color="#2892df"/></linearGradient></defs><path d="M33.338 6.544h27.742L33.966 90.944a4.439 4.439 0 01-4.207 3.056H8.445a4.441 4.441 0 01-4.2-5.882L29.13 9.6a4.441 4.441 0 014.208-3.056z" fill="url(#azG1)"/><path d="M71.175 60.898H29.977a2.046 2.046 0 00-1.395 3.539l26.579 24.838a4.464 4.464 0 003.036 1.188h23.468z" fill="#0078d4"/><path d="M33.338 6.544A4.4 4.4 0 0029.145 9.6L4.27 88.091a4.434 4.434 0 004.19 5.909h20.09a4.763 4.763 0 003.765-3.084l4.976-14.65 17.783 16.593a4.544 4.544 0 002.86 1.141h24.941L71.167 60.9l-29.082.007L63.938 6.544z" fill="url(#azG2)"/><path d="M66.866 9.6a4.437 4.437 0 00-4.2-3.056H33.648a4.438 4.438 0 014.2 3.056l24.886 78.459a4.44 4.44 0 01-4.2 5.882h29.02a4.44 4.44 0 004.2-5.882z" fill="#1490df"/></svg>Microsoft Azure</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.064.056.128.056.184 0 .08-.048.16-.152.24l-.504.336a.383.383 0 01-.208.072c-.08 0-.16-.04-.24-.112a2.49 2.49 0 01-.288-.376 6.212 6.212 0 01-.248-.472c-.624.736-1.408 1.104-2.352 1.104-.672 0-1.208-.192-1.6-.576-.392-.384-.592-.896-.592-1.536 0-.68.24-1.232.728-1.648.488-.416 1.136-.624 1.96-.624.272 0 .552.024.848.064.296.04.6.104.92.176v-.584c0-.608-.128-1.032-.376-1.28-.256-.248-.688-.368-1.304-.368-.28 0-.568.032-.864.104-.296.072-.584.16-.864.272-.12.048-.208.08-.264.096a.508.508 0 01-.128.024c-.112 0-.168-.08-.168-.248v-.392c0-.128.016-.224.056-.28a.597.597 0 01.224-.168c.28-.144.616-.264 1.008-.36A4.88 4.88 0 015.2 6.2c.968 0 1.676.22 2.132.66.448.44.676 1.108.676 2.004v2.64l-.245.532zm-3.252.888c.264 0 .536-.048.824-.144.288-.096.544-.272.76-.512.128-.152.224-.32.272-.512.048-.192.08-.424.08-.696v-.336a6.804 6.804 0 00-.736-.136 6.03 6.03 0 00-.752-.048c-.536 0-.928.104-1.192.32-.264.216-.392.52-.392.92 0 .376.096.656.296.848.192.2.472.296.84.296zm5.558.848c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.312L7.58 7.044a1.41 1.41 0 01-.072-.32c0-.128.064-.2.192-.2h.784c.152 0 .256.024.312.08.064.048.112.16.16.312l1.336 5.268 1.24-5.268c.04-.16.088-.264.152-.312.064-.048.176-.08.32-.08h.64c.152 0 .256.024.32.08.064.048.12.16.152.312l1.256 5.332 1.376-5.332c.048-.16.104-.264.16-.312.064-.048.16-.08.304-.08h.744c.128 0 .2.064.2.2 0 .04-.008.08-.016.128a1.15 1.15 0 01-.056.2l-1.92 5.336c-.048.16-.104.264-.168.312-.064.048-.168.08-.304.08h-.688c-.152 0-.256-.024-.32-.08-.064-.056-.12-.16-.152-.32L12.1 8.404l-1.228 5.024c-.04.16-.088.264-.152.32-.064.056-.176.08-.32.08h-.688zm8.484.216c-.416 0-.832-.048-1.232-.144-.4-.096-.712-.2-.92-.32-.128-.072-.216-.152-.248-.224a.56.56 0 01-.048-.224v-.408c0-.168.064-.248.184-.248.048 0 .096.008.144.024.048.016.12.048.2.08.272.12.568.216.888.28.328.064.648.096.976.096.52 0 .92-.088 1.2-.264a.866.866 0 00.424-.772.785.785 0 00-.216-.556c-.144-.152-.416-.288-.808-.416l-1.16-.36c-.584-.184-1.016-.456-1.288-.816a1.953 1.953 0 01-.408-1.2c0-.348.072-.656.216-.92.144-.264.34-.496.588-.688.248-.2.528-.348.848-.448.32-.1.656-.148 1.008-.148.176 0 .36.008.536.032.184.024.352.056.512.096.152.04.296.088.432.136.136.048.24.096.312.144a.64.64 0 01.216.2.48.48 0 01.064.256v.376c0 .168-.064.256-.184.256a.836.836 0 01-.304-.096 3.653 3.653 0 00-1.544-.32c-.472 0-.84.072-1.096.224-.256.152-.384.384-.384.704 0 .216.08.4.24.552.16.152.456.304.88.44l1.136.36c.576.184.992.44 1.24.768.248.328.368.704.368 1.12 0 .356-.072.68-.208.968-.144.288-.344.54-.6.752-.256.22-.56.38-.912.496-.368.12-.76.176-1.184.176zM20.468 17.284c-2.496 1.848-6.12 2.832-9.24 2.832-4.368 0-8.304-1.616-11.28-4.304-.232-.208-.024-.496.256-.336 3.208 1.864 7.176 2.992 11.272 2.992 2.768 0 5.808-.576 8.608-1.768.424-.184.776.28.384.584zm.868-1.116c-.32-.408-2.104-.192-2.904-.096-.248.032-.288-.184-.064-.344 1.424-1 3.76-.712 4.032-.376.272.344-.072 2.68-1.408 3.8-.208.176-.408.08-.312-.144.3-.744.968-2.432.656-2.84z" fill="#FF9900"/></svg>AWS</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>Microsoft 365</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><path d="M150 10C72.7 10 10 72.7 10 150s62.7 140 140 140 140-62.7 140-140S227.3 10 150 10zm0 20c66.3 0 120 53.7 120 120s-53.7 120-120 120S30 216.3 30 150 83.7 30 150 30zm-10 50v55H85l65 85 65-85h-55V80h-20z" fill="#E8131A"/></svg>CrowdStrike</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="20" fill="#000066"/><path d="M30 70 Q100 30 170 70 Q100 110 30 150 Q100 190 170 150" stroke="#4466FF" stroke-width="14" fill="none" stroke-linecap="round"/></svg>Sumo Logic</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#696969"/><path d="M10 75L55 20L100 75M55 20V80M115 20V80L160 50L205 80V20M220 20L255 75L290 20" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>VMware</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,2 98,27 98,73 50,98 2,73 2,27" fill="#E57000"/><polygon points="50,2 98,27 50,50 2,27" fill="#FF8C00"/><line x1="50" y1="50" x2="50" y2="98" stroke="#b34500" stroke-width="1.5"/><line x1="50" y1="50" x2="98" y2="73" stroke="#b34500" stroke-width="1.5"/><line x1="50" y1="50" x2="2" y2="73" stroke="#b34500" stroke-width="1.5"/></svg>Proxmox</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A3A6B"/><text x="50" y="65" font-family="Arial Black" font-weight="900" font-size="38" fill="#5B8DD9" text-anchor="middle">pf</text></svg>pfSense</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#A80030"/><path d="M55 15c-16 0-30 10-36 25 5-7 13-11 22-11 15 0 27 12 27 27S56 83 41 83c-9 0-17-4-22-11 6 15 20 25 36 25 21 0 37-17 37-41S76 15 55 15z" fill="white"/></svg>Debian</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><path fill="#0078D6" d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"/></svg>Windows Server</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.186.186 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.185.186v1.887c0 .102.082.185.185.185M23.763 9.89c-.vareador-.065-.673-.152-1.037-.14a3.18 3.18 0 00-.516.074c-.232-.996-.952-1.778-2.075-2.267l-.42-.199-.229.412c-.287.533-.455 1.128-.499 1.733-.046.572.044 1.147.285 1.655-.42.249-.883.39-1.36.413H.745a.744.744 0 00-.743.744c-.024 1.56.171 3.114.578 4.607.46 1.67 1.145 2.9 2.037 3.657C3.7 20.97 5.248 21.5 7.17 21.5c.927 0 1.843-.084 2.748-.25 1.242-.226 2.432-.64 3.532-1.230 1.012-.553 1.922-1.27 2.695-2.121.66-.72 1.194-1.528 1.595-2.388H18c1.074 0 2.106-.396 2.87-1.114.41-.39.744-.86.976-1.375l.135-.314zM3.743 11.378h1.96c.09 0 .163-.073.163-.162V9.35c0-.09-.073-.163-.162-.163H3.744c-.09 0-.163.073-.163.162v1.867c0 .09.073.162.162.162" fill="#2496ED"/></svg>Docker</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="12" fill="#7B68EE"/><text x="50" y="68" font-family="Arial" font-weight="bold" font-size="42" fill="white" text-anchor="middle">d</text></svg>Dokku</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="none" stroke="#7FBF4D" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="none" stroke="#7FBF4D" stroke-width="3" opacity=".6"/><circle cx="50" cy="50" r="14" fill="none" stroke="#7FBF4D" stroke-width="3" opacity=".3"/><circle cx="50" cy="50" r="4" fill="#7FBF4D"/><line x1="50" y1="50" x2="78" y2="22" stroke="#7FBF4D" stroke-width="3"/></svg>Nmap</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="#1a1a1a"/><circle cx="50" cy="50" r="46" fill="none" stroke="#FF6633" stroke-width="4"/><text x="50" y="42" font-family="Arial" font-weight="bold" font-size="44" fill="#FF6633" text-anchor="middle">!</text><rect x="44" y="62" width="12" height="12" rx="2" fill="#FF6633"/></svg>Nessus</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="10" fill="#4D9FD6"/><circle cx="50" cy="36" r="14" fill="none" stroke="white" stroke-width="5"/><path d="M26 82c0-13.3 10.7-24 24-24h0c13.3 0 24 10.7 24 24" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/><rect x="58" y="48" width="20" height="8" rx="2" fill="white"/><rect x="62" y="42" width="8" height="20" rx="2" fill="white"/></svg>Keycloak</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.13V3.19S18.28 0 11.914 0zm-3.2 1.848a1.046 1.046 0 011.048 1.046 1.046 1.046 0 01-1.047 1.047A1.046 1.046 0 018.667 2.894a1.046 1.046 0 011.047-1.046z" fill="#387EB8"/><path d="M12.087 24c6.093 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.12S24 18.21 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.402-3.35 3.402H9.452s-3.24-.052-3.24 3.13v5.34S5.72 24 12.087 24zm3.2-1.848a1.046 1.046 0 01-1.047-1.046 1.046 1.046 0 011.047-1.047 1.046 1.046 0 011.047 1.047 1.046 1.046 0 01-1.047 1.046z" fill="#FFE052"/></svg>Python</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="10" fill="#1D1D1D"/><path d="M15 35L42 52 15 69" stroke="#4EAA25" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="50" y1="69" x2="85" y2="69" stroke="#4EAA25" stroke-width="8" stroke-linecap="round"/></svg>Bash</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 11.513H0a5.218 5.218 0 005.232 5.215h2.13v2.057A5.215 5.215 0 0012.575 24V12.518a1.005 1.005 0 00-1.004-1.005zm5.723-5.756H5.757a5.215 5.215 0 005.214 5.214h2.129v2.058a5.218 5.218 0 005.215 5.214V6.758a1.001 1.001 0 00-1.021-1.001zM23.013 0H11.455a5.215 5.215 0 005.215 5.215h2.129v2.057A5.215 5.215 0 0024 12.483V1.005A1.001 1.001 0 0023.013 0z" fill="#0052CC"/></svg>Jira</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.469 6.825c.606 1.472.939 3.115.939 4.908 0 3.738-2.013 7.013-5.028 8.802L21.469 6.825zm-16.03 1.27c.535-.983.952-1.922 1.22-2.875l-3.626 10.802c-.761-1.533-1.24-3.227-1.24-5.022 0-1.108.164-2.178.453-3.187l2.12-.12c.377.008.747.024 1.073.402zm11.285-2.217c-.667-.036-1.267-.12-1.267-.12-.597-.072-.527-.954.072-.918 0 0 1.787.137 2.938.137 1.078 0 2.741-.137 2.741-.137.599-.036.669.883.071.918 0 0-.599.084-1.268.12l-4.032 11.993-2.424-7.268 1.728-4.725zm-2.563 1.386L11.18 15.7l-3.364-9.224c.558.03 1.062.077 1.612.077.597 0 1.508-.12 1.508-.12.597-.072.526-.954-.072-.918 0 0-1.787.137-2.937.137-.206 0-.449-.007-.705-.017l-1.23-3.25c1.508-2.576 4.266-4.31 7.434-4.31 2.366 0 4.518.895 6.145 2.363-.039-.002-.078-.005-.117-.005-1.078 0-1.842.937-1.842 1.939 0 .899.52 1.66 1.074 2.56.416.727.9 1.661.9 3.004 0 .929-.357 2.009-.826 3.517zm8.116 10.084c-1.643 3.355-5.07 5.652-9.034 5.652-2.761 0-5.278-1.051-7.178-2.773L14.26 8.283l4.017 11.065zm-9.034-20.348C4.841 0 0 4.841 0 10.81c0 5.968 4.841 10.809 10.81 10.809 5.969 0 10.809-4.841 10.809-10.809C21.619 4.84 16.778 0 10.809 0" fill="#21759B"/></svg>WordPress</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="400" fill="#D50C2D"/><path d="M120 80h60v100h100V80h60v240h-60V240H180v80h-60z" fill="white"/></svg>Hetzner</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.608 15.753l.296-1.023c.36-1.23-.496-2.11-1.744-2.11H3.683a.277.277 0 00-.266.197.272.272 0 00.113.303l2.773 1.627a.85.85 0 00.498.119l9.312-.069c.208-.007.279.076.495.076zm1.976-3.408l.31-1.072c.317-1.102-.48-1.885-1.698-1.885H5.684a.277.277 0 00-.266.197.272.272 0 00.113.303l2.773 1.627a.85.85 0 00.498.119h9.312c.208-.006.471.075.47.711zm-15.2 5.248l-.36 1.235a2.51 2.51 0 00.087 1.593c.331.856 1.096 1.393 2.02 1.393h14.02c.207 0 .378-.143.428-.343a.436.436 0 00-.19-.489l-2.767-1.627a.847.847 0 00-.503-.12l-9.3.07c-.21.006-.28-.077-.495-.077l-2.94-.635z" fill="#F38020"/></svg>Cloudflare</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.128 0a10.134 10.134 0 00-2.755.403C13.829.025 13.287 0 12.748 0c-1.537 0-2.779.463-3.642 1.238C7.99.395 6.322.003 4.806 0 4.186.201 3.962.794 3.81 1.207c-.362.842-.58 1.958-.682 3.145l-.434 4.792c-.043.501.154 1.242.57 1.475.2.109.398.136.572.105.168-.028.32-.1.453-.194.292.66.638 1.292 1.024 1.849l-.003.017.003.01c.148.238.307.47.474.699l.067.094c.156.22.32.435.49.64a8.28 8.28 0 00.524.584 5.35 5.35 0 00.503.444 3.4 3.4 0 00.447.285 2.06 2.06 0 00.42.154 1.92 1.92 0 00.448.053c.2 0 .396-.034.583-.1a2.44 2.44 0 00.546-.296c.178-.132.34-.283.48-.45.103-.122.194-.253.27-.39.39.136.78.22 1.16.22.373 0 .765-.086 1.163-.236a2.39 2.39 0 00.484.44c.15.11.307.2.47.274.15.066.305.115.462.147a2.15 2.15 0 00.466.054c.155 0 .31-.016.461-.05a1.85 1.85 0 00.427-.147 2.53 2.53 0 00.405-.26 3.6 3.6 0 00.373-.371 5.3 5.3 0 00.427-.586c.14-.216.27-.444.392-.681a8.07 8.07 0 00.434-1.113c.16-.48.29-.992.389-1.531a.46.46 0 00.047.016c.166.047.353.051.54.01.377-.08.71-.303.876-.618.193-.366.112-.748.027-1.083l-.005-.02C20.495 8.88 20.156 5.65 19.63 3.734c-.353-1.289-.974-3.734-2.502-3.734zm-.947 10.529l-.14.005c.007-.068.017-.139.023-.207l.117 0zm-8.022.008c.017.063.029.126.042.189H8.17c.01-.025.023-.049.032-.074zm3.948 3.017c-.327.099-.574.113-.778.06a2.547 2.547 0 01-.675-.32c-.124-.084-.253-.174-.396-.257a5.204 5.204 0 01-.37-.245l-.03-.02a5.83 5.83 0 01-.445-.366c-.157-.145-.307-.299-.448-.46a8.145 8.145 0 01-.46-.612c-.15-.22-.29-.45-.42-.687.06.027.12.056.182.08.344.128.7.192 1.058.19.348-.001.699-.062 1.043-.182.37-.128.714-.324 1.026-.568l.034-.028c.304.254.635.454.978.578.376.134.764.196 1.147.19.34-.008.675-.067 1.003-.179a3.7 3.7 0 00.27-.107c-.132.244-.272.48-.423.706a8.036 8.036 0 01-.458.61 6.9 6.9 0 01-.44.455 4.964 4.964 0 01-.447.363c-.145.097-.3.18-.462.25a1.56 1.56 0 01-.489.093 1.69 1.69 0 01-.007-.003z" fill="#336791"/></svg>PostgreSQL</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L1.605 6v12L12 24l10.395-6V6L12 0zm6 16.59c0 .705-.646 1.29-1.529 1.29-.631 0-1.351-.255-1.801-.81l-6-7.141v6.66c0 .721-.57 1.29-1.274 1.29H7.32c-.721 0-1.29-.6-1.29-1.29V7.41c0-.705.63-1.29 1.5-1.29.646 0 1.38.255 1.83.81l5.97 7.141V7.41c0-.721.6-1.29 1.29-1.29h.075c.72 0 1.305.6 1.305 1.29v9.18z" fill="#009900"/></svg>Nginx</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.793C5.373 5.793 0 8.524 0 12s5.373 6.207 12 6.207S24 15.476 24 12s-5.373-6.207-12-6.207zm0 10.93c-5.744 0-10.402-2.11-10.402-4.723 0-2.614 4.658-4.723 10.402-4.723s10.402 2.11 10.402 4.723c0 2.614-4.658 4.723-10.402 4.723zm-3.247-7.5H6.578L5.056 15.5h1.3l.413-1.59h1.633c1.298 0 2.089-.66 2.089-1.734 0-.902-.633-1.453-1.738-1.453zm-.113 2.273h-1.39l.357-1.371h1.334c.555 0 .845.22.845.617 0 .477-.405.754-1.146.754zm6.56-2.273h-1.38l-.942 3.553c-.127.477-.38.675-.8.675-.43 0-.593-.22-.593-.675V9.223h-1.38v3.553c0 1.033.6 1.637 1.68 1.637.86 0 1.485-.42 1.75-1.137l-.003.012 1.668-4.065zm3.565 0h-3.14l-.36 1.372H17.5l-.913 3.443h1.38l.912-3.443h1.635l.36-1.372z" fill="#777BB4"/></svg>PHP</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#EA7E20"/><path d="M50 18c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm0 10c4.4 0 8.5 1.2 12 3.3L24.3 62c-2.1-3.5-3.3-7.6-3.3-12 0-12.2 9.8-22 22-22zm0 44c-4.4 0-8.5-1.2-12-3.3l37.7-30.7c2.1 3.5 3.3 7.6 3.3 12 0 12.2-9.8 22-22 22z" fill="white"/></svg>OpenVPN</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#3BD671"/><polyline points="22,52 38,68 78,28" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>UptimeRobot</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A1A2E"/><polyline points="8,72 22,42 36,58 50,24 64,54 78,38 92,48" stroke="#00D4FF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>nMon</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#0F172A"/><line x1="50" y1="8" x2="50" y2="92" stroke="#6366F1" stroke-width="7"/><line x1="8" y1="50" x2="92" y2="50" stroke="#6366F1" stroke-width="7"/><line x1="20" y1="20" x2="80" y2="80" stroke="#6366F1" stroke-width="7"/><line x1="80" y1="20" x2="20" y2="80" stroke="#6366F1" stroke-width="7"/><circle cx="50" cy="50" r="10" fill="#6366F1"/></svg>Astrix</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="12" fill="#0D0D1A"/><circle cx="50" cy="50" r="32" fill="none" stroke="#7C3AED" stroke-width="6"/><circle cx="50" cy="50" r="16" fill="none" stroke="#A855F7" stroke-width="5"/><circle cx="50" cy="50" r="6" fill="#A855F7"/></svg>Portal26</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#5C3317"/><ellipse cx="50" cy="60" rx="25" ry="18" fill="#8B5E3C"/><circle cx="37" cy="42" r="9" fill="white"/><circle cx="63" cy="42" r="9" fill="white"/><circle cx="37" cy="42" r="5" fill="#222"/><circle cx="63" cy="42" r="5" fill="#222"/><ellipse cx="50" cy="70" rx="7" ry="5" fill="#6B3A2A"/></svg>TruffleHog</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#C0392B"/><line x1="50" y1="15" x2="50" y2="58" stroke="white" stroke-width="12" stroke-linecap="round"/><circle cx="50" cy="76" r="8" fill="white"/></svg>PhishER</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#003087"/><path d="M12 65 Q30 18 50 50 Q70 82 88 35" stroke="#00AEEF" stroke-width="9" fill="none" stroke-linecap="round"/></svg>NuWave</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A1A2E"/><circle cx="40" cy="40" r="20" fill="none" stroke="#FFD700" stroke-width="7"/><line x1="54" y1="54" x2="82" y2="82" stroke="#FFD700" stroke-width="7" stroke-linecap="round"/><rect x="70" y="72" width="14" height="7" rx="2" fill="#FFD700"/><rect x="77" y="66" width="7" height="14" rx="2" fill="#FFD700"/></svg>Keyper</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1E3A5F"/><rect x="10" y="10" width="80" height="20" rx="4" fill="#4A9EFF" opacity=".4"/><rect x="10" y="38" width="37" height="52" rx="4" fill="#4A9EFF" opacity=".7"/><rect x="53" y="38" width="37" height="24" rx="4" fill="#4A9EFF" opacity=".5"/><rect x="53" y="68" width="37" height="22" rx="4" fill="#4A9EFF" opacity=".5"/></svg>aPanel</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="azG1" x1="0.672" y1="0.04" x2="0.379" y2="1.023" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#114a8b"/><stop offset="1" stop-color="#0669bc"/></linearGradient><linearGradient id="azG2" x1="0.535" y1="0.078" x2="0.476" y2="0.984" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#3ccbf4"/><stop offset="1" stop-color="#2892df"/></linearGradient></defs><path d="M33.338 6.544h27.742L33.966 90.944a4.439 4.439 0 01-4.207 3.056H8.445a4.441 4.441 0 01-4.2-5.882L29.13 9.6a4.441 4.441 0 014.208-3.056z" fill="url(#azG1)"/><path d="M71.175 60.898H29.977a2.046 2.046 0 00-1.395 3.539l26.579 24.838a4.464 4.464 0 003.036 1.188h23.468z" fill="#0078d4"/><path d="M33.338 6.544A4.4 4.4 0 0029.145 9.6L4.27 88.091a4.434 4.434 0 004.19 5.909h20.09a4.763 4.763 0 003.765-3.084l4.976-14.65 17.783 16.593a4.544 4.544 0 002.86 1.141h24.941L71.167 60.9l-29.082.007L63.938 6.544z" fill="url(#azG2)"/><path d="M66.866 9.6a4.437 4.437 0 00-4.2-3.056H33.648a4.438 4.438 0 014.2 3.056l24.886 78.459a4.44 4.44 0 01-4.2 5.882h29.02a4.44 4.44 0 004.2-5.882z" fill="#1490df"/></svg>Microsoft Azure</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.064.056.128.056.184 0 .08-.048.16-.152.24l-.504.336a.383.383 0 01-.208.072c-.08 0-.16-.04-.24-.112a2.49 2.49 0 01-.288-.376 6.212 6.212 0 01-.248-.472c-.624.736-1.408 1.104-2.352 1.104-.672 0-1.208-.192-1.6-.576-.392-.384-.592-.896-.592-1.536 0-.68.24-1.232.728-1.648.488-.416 1.136-.624 1.96-.624.272 0 .552.024.848.064.296.04.6.104.92.176v-.584c0-.608-.128-1.032-.376-1.28-.256-.248-.688-.368-1.304-.368-.28 0-.568.032-.864.104-.296.072-.584.16-.864.272-.12.048-.208.08-.264.096a.508.508 0 01-.128.024c-.112 0-.168-.08-.168-.248v-.392c0-.128.016-.224.056-.28a.597.597 0 01.224-.168c.28-.144.616-.264 1.008-.36A4.88 4.88 0 015.2 6.2c.968 0 1.676.22 2.132.66.448.44.676 1.108.676 2.004v2.64l-.245.532zm-3.252.888c.264 0 .536-.048.824-.144.288-.096.544-.272.76-.512.128-.152.224-.32.272-.512.048-.192.08-.424.08-.696v-.336a6.804 6.804 0 00-.736-.136 6.03 6.03 0 00-.752-.048c-.536 0-.928.104-1.192.32-.264.216-.392.52-.392.92 0 .376.096.656.296.848.192.2.472.296.84.296zm5.558.848c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.312L7.58 7.044a1.41 1.41 0 01-.072-.32c0-.128.064-.2.192-.2h.784c.152 0 .256.024.312.08.064.048.112.16.16.312l1.336 5.268 1.24-5.268c.04-.16.088-.264.152-.312.064-.048.176-.08.32-.08h.64c.152 0 .256.024.32.08.064.048.12.16.152.312l1.256 5.332 1.376-5.332c.048-.16.104-.264.16-.312.064-.048.16-.08.304-.08h.744c.128 0 .2.064.2.2 0 .04-.008.08-.016.128a1.15 1.15 0 01-.056.2l-1.92 5.336c-.048.16-.104.264-.168.312-.064.048-.168.08-.304.08h-.688c-.152 0-.256-.024-.32-.08-.064-.056-.12-.16-.152-.32L12.1 8.404l-1.228 5.024c-.04.16-.088.264-.152.32-.064.056-.176.08-.32.08h-.688zm8.484.216c-.416 0-.832-.048-1.232-.144-.4-.096-.712-.2-.92-.32-.128-.072-.216-.152-.248-.224a.56.56 0 01-.048-.224v-.408c0-.168.064-.248.184-.248.048 0 .096.008.144.024.048.016.12.048.2.08.272.12.568.216.888.28.328.064.648.096.976.096.52 0 .92-.088 1.2-.264a.866.866 0 00.424-.772.785.785 0 00-.216-.556c-.144-.152-.416-.288-.808-.416l-1.16-.36c-.584-.184-1.016-.456-1.288-.816a1.953 1.953 0 01-.408-1.2c0-.348.072-.656.216-.92.144-.264.34-.496.588-.688.248-.2.528-.348.848-.448.32-.1.656-.148 1.008-.148.176 0 .36.008.536.032.184.024.352.056.512.096.152.04.296.088.432.136.136.048.24.096.312.144a.64.64 0 01.216.2.48.48 0 01.064.256v.376c0 .168-.064.256-.184.256a.836.836 0 01-.304-.096 3.653 3.653 0 00-1.544-.32c-.472 0-.84.072-1.096.224-.256.152-.384.384-.384.704 0 .216.08.4.24.552.16.152.456.304.88.44l1.136.36c.576.184.992.44 1.24.768.248.328.368.704.368 1.12 0 .356-.072.68-.208.968-.144.288-.344.54-.6.752-.256.22-.56.38-.912.496-.368.12-.76.176-1.184.176zM20.468 17.284c-2.496 1.848-6.12 2.832-9.24 2.832-4.368 0-8.304-1.616-11.28-4.304-.232-.208-.024-.496.256-.336 3.208 1.864 7.176 2.992 11.272 2.992 2.768 0 5.808-.576 8.608-1.768.424-.184.776.28.384.584zm.868-1.116c-.32-.408-2.104-.192-2.904-.096-.248.032-.288-.184-.064-.344 1.424-1 3.76-.712 4.032-.376.272.344-.072 2.68-1.408 3.8-.208.176-.408.08-.312-.144.3-.744.968-2.432.656-2.84z" fill="#FF9900"/></svg>AWS</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>Microsoft 365</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><path d="M150 10C72.7 10 10 72.7 10 150s62.7 140 140 140 140-62.7 140-140S227.3 10 150 10zm0 20c66.3 0 120 53.7 120 120s-53.7 120-120 120S30 216.3 30 150 83.7 30 150 30zm-10 50v55H85l65 85 65-85h-55V80h-20z" fill="#E8131A"/></svg>CrowdStrike</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="20" fill="#000066"/><path d="M30 70 Q100 30 170 70 Q100 110 30 150 Q100 190 170 150" stroke="#4466FF" stroke-width="14" fill="none" stroke-linecap="round"/></svg>Sumo Logic</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="100" fill="#696969"/><path d="M10 75L55 20L100 75M55 20V80M115 20V80L160 50L205 80V20M220 20L255 75L290 20" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>VMware</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,2 98,27 98,73 50,98 2,73 2,27" fill="#E57000"/><polygon points="50,2 98,27 50,50 2,27" fill="#FF8C00"/><line x1="50" y1="50" x2="50" y2="98" stroke="#b34500" stroke-width="1.5"/><line x1="50" y1="50" x2="98" y2="73" stroke="#b34500" stroke-width="1.5"/><line x1="50" y1="50" x2="2" y2="73" stroke="#b34500" stroke-width="1.5"/></svg>Proxmox</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A3A6B"/><text x="50" y="65" font-family="Arial Black" font-weight="900" font-size="38" fill="#5B8DD9" text-anchor="middle">pf</text></svg>pfSense</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#A80030"/><path d="M55 15c-16 0-30 10-36 25 5-7 13-11 22-11 15 0 27 12 27 27S56 83 41 83c-9 0-17-4-22-11 6 15 20 25 36 25 21 0 37-17 37-41S76 15 55 15z" fill="white"/></svg>Debian</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><path fill="#0078D6" d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"/></svg>Windows Server</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.186.186 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.185.186v1.887c0 .102.082.185.185.185M23.763 9.89c-.vareador-.065-.673-.152-1.037-.14a3.18 3.18 0 00-.516.074c-.232-.996-.952-1.778-2.075-2.267l-.42-.199-.229.412c-.287.533-.455 1.128-.499 1.733-.046.572.044 1.147.285 1.655-.42.249-.883.39-1.36.413H.745a.744.744 0 00-.743.744c-.024 1.56.171 3.114.578 4.607.46 1.67 1.145 2.9 2.037 3.657C3.7 20.97 5.248 21.5 7.17 21.5c.927 0 1.843-.084 2.748-.25 1.242-.226 2.432-.64 3.532-1.230 1.012-.553 1.922-1.27 2.695-2.121.66-.72 1.194-1.528 1.595-2.388H18c1.074 0 2.106-.396 2.87-1.114.41-.39.744-.86.976-1.375l.135-.314zM3.743 11.378h1.96c.09 0 .163-.073.163-.162V9.35c0-.09-.073-.163-.162-.163H3.744c-.09 0-.163.073-.163.162v1.867c0 .09.073.162.162.162" fill="#2496ED"/></svg>Docker</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="12" fill="#7B68EE"/><text x="50" y="68" font-family="Arial" font-weight="bold" font-size="42" fill="white" text-anchor="middle">d</text></svg>Dokku</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="none" stroke="#7FBF4D" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="none" stroke="#7FBF4D" stroke-width="3" opacity=".6"/><circle cx="50" cy="50" r="14" fill="none" stroke="#7FBF4D" stroke-width="3" opacity=".3"/><circle cx="50" cy="50" r="4" fill="#7FBF4D"/><line x1="50" y1="50" x2="78" y2="22" stroke="#7FBF4D" stroke-width="3"/></svg>Nmap</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="#1a1a1a"/><circle cx="50" cy="50" r="46" fill="none" stroke="#FF6633" stroke-width="4"/><text x="50" y="42" font-family="Arial" font-weight="bold" font-size="44" fill="#FF6633" text-anchor="middle">!</text><rect x="44" y="62" width="12" height="12" rx="2" fill="#FF6633"/></svg>Nessus</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="10" fill="#4D9FD6"/><circle cx="50" cy="36" r="14" fill="none" stroke="white" stroke-width="5"/><path d="M26 82c0-13.3 10.7-24 24-24h0c13.3 0 24 10.7 24 24" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/><rect x="58" y="48" width="20" height="8" rx="2" fill="white"/><rect x="62" y="42" width="8" height="20" rx="2" fill="white"/></svg>Keycloak</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.13V3.19S18.28 0 11.914 0zm-3.2 1.848a1.046 1.046 0 011.048 1.046 1.046 1.046 0 01-1.047 1.047A1.046 1.046 0 018.667 2.894a1.046 1.046 0 011.047-1.046z" fill="#387EB8"/><path d="M12.087 24c6.093 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.12S24 18.21 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.402-3.35 3.402H9.452s-3.24-.052-3.24 3.13v5.34S5.72 24 12.087 24zm3.2-1.848a1.046 1.046 0 01-1.047-1.046 1.046 1.046 0 011.047-1.047 1.046 1.046 0 011.047 1.047 1.046 1.046 0 01-1.047 1.046z" fill="#FFE052"/></svg>Python</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="10" fill="#1D1D1D"/><path d="M15 35L42 52 15 69" stroke="#4EAA25" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="50" y1="69" x2="85" y2="69" stroke="#4EAA25" stroke-width="8" stroke-linecap="round"/></svg>Bash</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 11.513H0a5.218 5.218 0 005.232 5.215h2.13v2.057A5.215 5.215 0 0012.575 24V12.518a1.005 1.005 0 00-1.004-1.005zm5.723-5.756H5.757a5.215 5.215 0 005.214 5.214h2.129v2.058a5.218 5.218 0 005.215 5.214V6.758a1.001 1.001 0 00-1.021-1.001zM23.013 0H11.455a5.215 5.215 0 005.215 5.215h2.129v2.057A5.215 5.215 0 0024 12.483V1.005A1.001 1.001 0 0023.013 0z" fill="#0052CC"/></svg>Jira</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.469 6.825c.606 1.472.939 3.115.939 4.908 0 3.738-2.013 7.013-5.028 8.802L21.469 6.825zm-16.03 1.27c.535-.983.952-1.922 1.22-2.875l-3.626 10.802c-.761-1.533-1.24-3.227-1.24-5.022 0-1.108.164-2.178.453-3.187l2.12-.12c.377.008.747.024 1.073.402zm11.285-2.217c-.667-.036-1.267-.12-1.267-.12-.597-.072-.527-.954.072-.918 0 0 1.787.137 2.938.137 1.078 0 2.741-.137 2.741-.137.599-.036.669.883.071.918 0 0-.599.084-1.268.12l-4.032 11.993-2.424-7.268 1.728-4.725zm-2.563 1.386L11.18 15.7l-3.364-9.224c.558.03 1.062.077 1.612.077.597 0 1.508-.12 1.508-.12.597-.072.526-.954-.072-.918 0 0-1.787.137-2.937.137-.206 0-.449-.007-.705-.017l-1.23-3.25c1.508-2.576 4.266-4.31 7.434-4.31 2.366 0 4.518.895 6.145 2.363-.039-.002-.078-.005-.117-.005-1.078 0-1.842.937-1.842 1.939 0 .899.52 1.66 1.074 2.56.416.727.9 1.661.9 3.004 0 .929-.357 2.009-.826 3.517zm8.116 10.084c-1.643 3.355-5.07 5.652-9.034 5.652-2.761 0-5.278-1.051-7.178-2.773L14.26 8.283l4.017 11.065zm-9.034-20.348C4.841 0 0 4.841 0 10.81c0 5.968 4.841 10.809 10.81 10.809 5.969 0 10.809-4.841 10.809-10.809C21.619 4.84 16.778 0 10.809 0" fill="#21759B"/></svg>WordPress</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="400" fill="#D50C2D"/><path d="M120 80h60v100h100V80h60v240h-60V240H180v80h-60z" fill="white"/></svg>Hetzner</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.608 15.753l.296-1.023c.36-1.23-.496-2.11-1.744-2.11H3.683a.277.277 0 00-.266.197.272.272 0 00.113.303l2.773 1.627a.85.85 0 00.498.119l9.312-.069c.208-.007.279.076.495.076zm1.976-3.408l.31-1.072c.317-1.102-.48-1.885-1.698-1.885H5.684a.277.277 0 00-.266.197.272.272 0 00.113.303l2.773 1.627a.85.85 0 00.498.119h9.312c.208-.006.471.075.47.711zm-15.2 5.248l-.36 1.235a2.51 2.51 0 00.087 1.593c.331.856 1.096 1.393 2.02 1.393h14.02c.207 0 .378-.143.428-.343a.436.436 0 00-.19-.489l-2.767-1.627a.847.847 0 00-.503-.12l-9.3.07c-.21.006-.28-.077-.495-.077l-2.94-.635z" fill="#F38020"/></svg>Cloudflare</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.128 0a10.134 10.134 0 00-2.755.403C13.829.025 13.287 0 12.748 0c-1.537 0-2.779.463-3.642 1.238C7.99.395 6.322.003 4.806 0 4.186.201 3.962.794 3.81 1.207c-.362.842-.58 1.958-.682 3.145l-.434 4.792c-.043.501.154 1.242.57 1.475.2.109.398.136.572.105.168-.028.32-.1.453-.194.292.66.638 1.292 1.024 1.849l-.003.017.003.01c.148.238.307.47.474.699l.067.094c.156.22.32.435.49.64a8.28 8.28 0 00.524.584 5.35 5.35 0 00.503.444 3.4 3.4 0 00.447.285 2.06 2.06 0 00.42.154 1.92 1.92 0 00.448.053c.2 0 .396-.034.583-.1a2.44 2.44 0 00.546-.296c.178-.132.34-.283.48-.45.103-.122.194-.253.27-.39.39.136.78.22 1.16.22.373 0 .765-.086 1.163-.236a2.39 2.39 0 00.484.44c.15.11.307.2.47.274.15.066.305.115.462.147a2.15 2.15 0 00.466.054c.155 0 .31-.016.461-.05a1.85 1.85 0 00.427-.147 2.53 2.53 0 00.405-.26 3.6 3.6 0 00.373-.371 5.3 5.3 0 00.427-.586c.14-.216.27-.444.392-.681a8.07 8.07 0 00.434-1.113c.16-.48.29-.992.389-1.531a.46.46 0 00.047.016c.166.047.353.051.54.01.377-.08.71-.303.876-.618.193-.366.112-.748.027-1.083l-.005-.02C20.495 8.88 20.156 5.65 19.63 3.734c-.353-1.289-.974-3.734-2.502-3.734zm-.947 10.529l-.14.005c.007-.068.017-.139.023-.207l.117 0zm-8.022.008c.017.063.029.126.042.189H8.17c.01-.025.023-.049.032-.074zm3.948 3.017c-.327.099-.574.113-.778.06a2.547 2.547 0 01-.675-.32c-.124-.084-.253-.174-.396-.257a5.204 5.204 0 01-.37-.245l-.03-.02a5.83 5.83 0 01-.445-.366c-.157-.145-.307-.299-.448-.46a8.145 8.145 0 01-.46-.612c-.15-.22-.29-.45-.42-.687.06.027.12.056.182.08.344.128.7.192 1.058.19.348-.001.699-.062 1.043-.182.37-.128.714-.324 1.026-.568l.034-.028c.304.254.635.454.978.578.376.134.764.196 1.147.19.34-.008.675-.067 1.003-.179a3.7 3.7 0 00.27-.107c-.132.244-.272.48-.423.706a8.036 8.036 0 01-.458.61 6.9 6.9 0 01-.44.455 4.964 4.964 0 01-.447.363c-.145.097-.3.18-.462.25a1.56 1.56 0 01-.489.093 1.69 1.69 0 01-.007-.003z" fill="#336791"/></svg>PostgreSQL</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L1.605 6v12L12 24l10.395-6V6L12 0zm6 16.59c0 .705-.646 1.29-1.529 1.29-.631 0-1.351-.255-1.801-.81l-6-7.141v6.66c0 .721-.57 1.29-1.274 1.29H7.32c-.721 0-1.29-.6-1.29-1.29V7.41c0-.705.63-1.29 1.5-1.29.646 0 1.38.255 1.83.81l5.97 7.141V7.41c0-.721.6-1.29 1.29-1.29h.075c.72 0 1.305.6 1.305 1.29v9.18z" fill="#009900"/></svg>Nginx</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.793C5.373 5.793 0 8.524 0 12s5.373 6.207 12 6.207S24 15.476 24 12s-5.373-6.207-12-6.207zm0 10.93c-5.744 0-10.402-2.11-10.402-4.723 0-2.614 4.658-4.723 10.402-4.723s10.402 2.11 10.402 4.723c0 2.614-4.658 4.723-10.402 4.723zm-3.247-7.5H6.578L5.056 15.5h1.3l.413-1.59h1.633c1.298 0 2.089-.66 2.089-1.734 0-.902-.633-1.453-1.738-1.453zm-.113 2.273h-1.39l.357-1.371h1.334c.555 0 .845.22.845.617 0 .477-.405.754-1.146.754zm6.56-2.273h-1.38l-.942 3.553c-.127.477-.38.675-.8.675-.43 0-.593-.22-.593-.675V9.223h-1.38v3.553c0 1.033.6 1.637 1.68 1.637.86 0 1.485-.42 1.75-1.137l-.003.012 1.668-4.065zm3.565 0h-3.14l-.36 1.372H17.5l-.913 3.443h1.38l.912-3.443h1.635l.36-1.372z" fill="#777BB4"/></svg>PHP</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#EA7E20"/><path d="M50 18c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm0 10c4.4 0 8.5 1.2 12 3.3L24.3 62c-2.1-3.5-3.3-7.6-3.3-12 0-12.2 9.8-22 22-22zm0 44c-4.4 0-8.5-1.2-12-3.3l37.7-30.7c2.1 3.5 3.3 7.6 3.3 12 0 12.2-9.8 22-22 22z" fill="white"/></svg>OpenVPN</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#3BD671"/><polyline points="22,52 38,68 78,28" stroke="white" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>UptimeRobot</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A1A2E"/><polyline points="8,72 22,42 36,58 50,24 64,54 78,38 92,48" stroke="#00D4FF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>nMon</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#0F172A"/><line x1="50" y1="8" x2="50" y2="92" stroke="#6366F1" stroke-width="7"/><line x1="8" y1="50" x2="92" y2="50" stroke="#6366F1" stroke-width="7"/><line x1="20" y1="20" x2="80" y2="80" stroke="#6366F1" stroke-width="7"/><line x1="80" y1="20" x2="20" y2="80" stroke="#6366F1" stroke-width="7"/><circle cx="50" cy="50" r="10" fill="#6366F1"/></svg>Astrix</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="12" fill="#0D0D1A"/><circle cx="50" cy="50" r="32" fill="none" stroke="#7C3AED" stroke-width="6"/><circle cx="50" cy="50" r="16" fill="none" stroke="#A855F7" stroke-width="5"/><circle cx="50" cy="50" r="6" fill="#A855F7"/></svg>Portal26</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="#5C3317"/><ellipse cx="50" cy="60" rx="25" ry="18" fill="#8B5E3C"/><circle cx="37" cy="42" r="9" fill="white"/><circle cx="63" cy="42" r="9" fill="white"/><circle cx="37" cy="42" r="5" fill="#222"/><circle cx="63" cy="42" r="5" fill="#222"/><ellipse cx="50" cy="70" rx="7" ry="5" fill="#6B3A2A"/></svg>TruffleHog</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#C0392B"/><line x1="50" y1="15" x2="50" y2="58" stroke="white" stroke-width="12" stroke-linecap="round"/><circle cx="50" cy="76" r="8" fill="white"/></svg>PhishER</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#003087"/><path d="M12 65 Q30 18 50 50 Q70 82 88 35" stroke="#00AEEF" stroke-width="9" fill="none" stroke-linecap="round"/></svg>NuWave</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1A1A2E"/><circle cx="40" cy="40" r="20" fill="none" stroke="#FFD700" stroke-width="7"/><line x1="54" y1="54" x2="82" y2="82" stroke="#FFD700" stroke-width="7" stroke-linecap="round"/><rect x="70" y="72" width="14" height="7" rx="2" fill="#FFD700"/><rect x="77" y="66" width="7" height="14" rx="2" fill="#FFD700"/></svg>Keyper</div>
-        <div class="tool-chip"><svg width="18" height="18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="8" fill="#1E3A5F"/><rect x="10" y="10" width="80" height="20" rx="4" fill="#4A9EFF" opacity=".4"/><rect x="10" y="38" width="37" height="52" rx="4" fill="#4A9EFF" opacity=".7"/><rect x="53" y="38" width="37" height="24" rx="4" fill="#4A9EFF" opacity=".5"/><rect x="53" y="68" width="37" height="22" rx="4" fill="#4A9EFF" opacity=".5"/></svg>aPanel</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/microsoftazure.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="microsoftazure" onerror="this.style.display='none'">Microsoft Azure</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/amazonaws.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="amazonaws" onerror="this.style.display='none'">AWS</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/microsoft.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="microsoft" onerror="this.style.display='none'">Microsoft 365</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/crowdstrike.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="crowdstrike" onerror="this.style.display='none'">CrowdStrike</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/sumologic.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="sumologic" onerror="this.style.display='none'">Sumo Logic</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/vmware.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="vmware" onerror="this.style.display='none'">VMware</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/proxmox.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="proxmox" onerror="this.style.display='none'">Proxmox</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/pfsense.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="pfsense" onerror="this.style.display='none'">pfSense</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/debian.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="debian" onerror="this.style.display='none'">Debian</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/windows.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="windows" onerror="this.style.display='none'">Windows Server</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/docker.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="docker" onerror="this.style.display='none'">Docker</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/dokku.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="dokku" onerror="this.style.display='none'">Dokku</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nmap.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nmap" onerror="this.style.display='none'">Nmap</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/tenable.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="tenable" onerror="this.style.display='none'">Nessus</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/openvas.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="openvas" onerror="this.style.display='none'">OpenVAS</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/qualys.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="qualys" onerror="this.style.display='none'">Qualys</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/keycloak.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="keycloak" onerror="this.style.display='none'">Keycloak</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/python.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="python" onerror="this.style.display='none'">Python</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/gnubash.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="gnubash" onerror="this.style.display='none'">Bash</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/jira.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="jira" onerror="this.style.display='none'">Jira</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/wordpress.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="wordpress" onerror="this.style.display='none'">WordPress</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/hetzner.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="hetzner" onerror="this.style.display='none'">Hetzner</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/cloudflare.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="cloudflare" onerror="this.style.display='none'">Cloudflare</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/postgresql.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="postgresql" onerror="this.style.display='none'">PostgreSQL</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nginx.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nginx" onerror="this.style.display='none'">Nginx</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/php.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="php" onerror="this.style.display='none'">PHP</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/openvpn.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="openvpn" onerror="this.style.display='none'">OpenVPN</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/uptimerobot.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="uptimerobot" onerror="this.style.display='none'">UptimeRobot</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/linux.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="linux" onerror="this.style.display='none'">nMon</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/astrix.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="astrix" onerror="this.style.display='none'">Astrix</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/portal26.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="portal26" onerror="this.style.display='none'">Portal26</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/trufflesecurity.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="trufflesecurity" onerror="this.style.display='none'">TruffleHog</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/knowbe4.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="knowbe4" onerror="this.style.display='none'">PhishER</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nuwave.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nuwave" onerror="this.style.display='none'">NuWave</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/keyper.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="keyper" onerror="this.style.display='none'">Keyper</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/aapanel.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="aapanel" onerror="this.style.display='none'">aPanel</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/microsoftazure.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="microsoftazure" onerror="this.style.display='none'">Microsoft Azure</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/amazonaws.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="amazonaws" onerror="this.style.display='none'">AWS</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/microsoft.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="microsoft" onerror="this.style.display='none'">Microsoft 365</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/crowdstrike.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="crowdstrike" onerror="this.style.display='none'">CrowdStrike</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/sumologic.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="sumologic" onerror="this.style.display='none'">Sumo Logic</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/vmware.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="vmware" onerror="this.style.display='none'">VMware</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/proxmox.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="proxmox" onerror="this.style.display='none'">Proxmox</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/pfsense.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="pfsense" onerror="this.style.display='none'">pfSense</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/debian.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="debian" onerror="this.style.display='none'">Debian</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/windows.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="windows" onerror="this.style.display='none'">Windows Server</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/docker.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="docker" onerror="this.style.display='none'">Docker</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/dokku.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="dokku" onerror="this.style.display='none'">Dokku</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nmap.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nmap" onerror="this.style.display='none'">Nmap</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/tenable.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="tenable" onerror="this.style.display='none'">Nessus</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/openvas.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="openvas" onerror="this.style.display='none'">OpenVAS</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/qualys.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="qualys" onerror="this.style.display='none'">Qualys</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/keycloak.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="keycloak" onerror="this.style.display='none'">Keycloak</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/python.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="python" onerror="this.style.display='none'">Python</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/gnubash.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="gnubash" onerror="this.style.display='none'">Bash</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/jira.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="jira" onerror="this.style.display='none'">Jira</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/wordpress.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="wordpress" onerror="this.style.display='none'">WordPress</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/hetzner.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="hetzner" onerror="this.style.display='none'">Hetzner</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/cloudflare.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="cloudflare" onerror="this.style.display='none'">Cloudflare</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/postgresql.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="postgresql" onerror="this.style.display='none'">PostgreSQL</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nginx.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nginx" onerror="this.style.display='none'">Nginx</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/php.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="php" onerror="this.style.display='none'">PHP</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/openvpn.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="openvpn" onerror="this.style.display='none'">OpenVPN</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/uptimerobot.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="uptimerobot" onerror="this.style.display='none'">UptimeRobot</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/linux.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="linux" onerror="this.style.display='none'">nMon</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/astrix.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="astrix" onerror="this.style.display='none'">Astrix</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/portal26.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="portal26" onerror="this.style.display='none'">Portal26</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/trufflesecurity.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="trufflesecurity" onerror="this.style.display='none'">TruffleHog</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/knowbe4.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="knowbe4" onerror="this.style.display='none'">PhishER</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/nuwave.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="nuwave" onerror="this.style.display='none'">NuWave</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/keyper.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="keyper" onerror="this.style.display='none'">Keyper</div>
+        <div class="tool-chip"><img src="https://unpkg.com/simple-icons@latest/icons/aapanel.svg" width="18" height="18" style="width:18px;height:18px;filter:brightness(0) saturate(100%) invert(1);" alt="aapanel" onerror="this.style.display='none'">aPanel</div>
       </div>
     </div>
   </section>
@@ -1187,5 +1227,148 @@
   </script>
 
 
+
+  <script>
+    (function() {
+      var browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      var lang = browserLang.startsWith('es') ? 'es' : 'en';
+      // Apply browser language on load
+      document.addEventListener('DOMContentLoaded', function() {
+        if (lang === 'es') {
+          window.toggleLang();
+        }
+      });
+
+      var t = {
+        en: {
+          eyebrow: 'Cybersecurity Engineer · Blue Team · Cloud Infrastructure',
+          bio: 'Cybersecurity professional with experience in SOC Tier 2 operations, security incident investigation, and cloud-based environments. Skilled in incident response, email security analysis, vulnerability remediation, and AI-related security investigations — with a strong background in Microsoft 365, Azure, AWS, and Linux/Windows infrastructure.',
+          navExp: 'Experience', navProj: 'Projects', navCert: 'Certifications', navEdu: 'Education', navCon: 'Contact',
+          badgeProj: 'Available for projects', badgeFull: 'Full-time', badgePart: 'Part-time', badgeRemote: 'Remote preferred', badgeHybrid: 'Open to hybrid',
+          statYears: 'Years experience', statCerts: 'Certifications', statProj: 'Projects', statCreds: 'Credentials',
+          secExp: 'Experience', secProj: 'Projects', secCert: 'Credentials & Certifications', secEdu: 'Education', secSkills: 'Skills', secTools: 'Tools & Technologies', secContact: 'Get in Touch',
+          toolsSub: "These are <em>some</em> of the tools and technologies I've used throughout my professional journey.",
+          exp1: 'Cybersecurity Analyst', exp2: 'IT Infrastructure Manager', exp3: 'Cybersecurity Instructor Assistant', exp4: 'Cybersecurity Content Development Manager',
+          edu1d: 'Bachelor of Engineering in Cybersecurity', edu1f: 'Cybersecurity Engineering',
+          edu2d: 'Technologist in Information Security', edu2f: 'Information Security', edu2a: 'Highest GPA — 14th Graduation Ceremony',
+          edu3d: 'High School IT Technician', edu3f: 'Computer Science',
+          edu4d: 'English Language Program', edu4f: 'Advanced English',
+          contactIntro: "Interested in working together, have a question, or just want to connect? Send me a message and I'll get back to you as soon as possible.",
+          formName: 'NAME', formEmail: 'EMAIL', formMsg: 'MESSAGE',
+          formNamePh: 'Your name', formEmailPh: 'your@email.com', formMsgPh: "What's on your mind?",
+          formBtn: 'Send message →', formSuccess: "Message sent! I'll get back to you soon.",
+          footerSub: '© 2026 · Cybersecurity Engineer · Santo Domingo, DR',
+          filterAll: 'All',
+          phrases: ["Defend. Detect. Respond.","Think like an attacker, act like a defender.","Always watching. Always protecting.","Security is not a product, it's a process.","Blue Team mindset.","Securing systems, one layer at a time.","Detect threats before they become incidents.","Defense in depth, always."]
+        },
+        es: {
+          eyebrow: 'Ingeniero en Ciberseguridad · Blue Team · Infraestructura Cloud',
+          bio: 'Profesional en ciberseguridad con experiencia en operaciones SOC Tier 2, investigación de incidentes de seguridad y entornos en la nube. Habilidades en respuesta a incidentes, análisis de seguridad de correo electrónico, remediación de vulnerabilidades e investigaciones de seguridad relacionadas con IA — con sólida experiencia en Microsoft 365, Azure, AWS e infraestructura Linux/Windows.',
+          navExp: 'Experiencia', navProj: 'Proyectos', navCert: 'Certificaciones', navEdu: 'Educación', navCon: 'Contacto',
+          badgeProj: 'Disponible para proyectos', badgeFull: 'Tiempo completo', badgePart: 'Medio tiempo', badgeRemote: 'Prefiero remoto', badgeHybrid: 'Abierto a híbrido',
+          statYears: 'Años de experiencia', statCerts: 'Certificaciones', statProj: 'Proyectos', statCreds: 'Credenciales',
+          secExp: 'Experiencia', secProj: 'Proyectos', secCert: 'Credenciales y Certificaciones', secEdu: 'Educación', secSkills: 'Habilidades', secTools: 'Herramientas y Tecnologías', secContact: 'Contáctame',
+          toolsSub: 'Estas son <em>algunas</em> de las herramientas y tecnologías que he utilizado durante mi trayecto profesional.',
+          exp1: 'Analista de Ciberseguridad', exp2: 'Gerente de Infraestructura TI', exp3: 'Asistente de Instructor de Ciberseguridad', exp4: 'Gerente de Desarrollo de Contenido en Ciberseguridad',
+          edu1d: 'Ingeniería en Ciberseguridad', edu1f: 'Ingeniería en Ciberseguridad',
+          edu2d: 'Tecnólogo en Seguridad Informática', edu2f: 'Seguridad Informática', edu2a: 'Promedio más alto — 14ta Ceremonia de Graduación',
+          edu3d: 'Técnico en Informática (Bachillerato)', edu3f: 'Informática',
+          edu4d: 'Programa de Idioma Inglés', edu4f: 'Inglés Avanzado',
+          contactIntro: '¿Interesado en trabajar juntos, tienes una pregunta o simplemente quieres conectar? Envíame un mensaje y te responderé lo antes posible.',
+          formName: 'NOMBRE', formEmail: 'CORREO', formMsg: 'MENSAJE',
+          formNamePh: 'Tu nombre', formEmailPh: 'tu@correo.com', formMsgPh: '¿En qué puedo ayudarte?',
+          formBtn: 'Enviar mensaje →', formSuccess: '¡Mensaje enviado! Te responderé pronto.',
+          footerSub: '© 2026 · Ingeniero en Ciberseguridad · Santo Domingo, RD',
+          filterAll: 'Todas',
+          phrases: ["Defender. Detectar. Responder.","Piensa como atacante, actúa como defensor.","Siempre vigilando. Siempre protegiendo.","La seguridad no es un producto, es un proceso.","Mentalidad Blue Team.","Asegurando sistemas, capa por capa.","Detecta amenazas antes de que se conviertan en incidentes.","Defensa en profundidad, siempre."]
+        }
+      };
+
+      window.toggleLang = function() {
+        lang = lang === 'en' ? 'es' : 'en';
+        var T = t[lang];
+        document.getElementById('langBtn').textContent = lang === 'en' ? '🌐 EN' : '🌐 ES';
+
+        // Hero
+        document.querySelector('.hero-eyebrow').textContent = T.eyebrow;
+        document.querySelector('.hero-bio').textContent = T.bio;
+
+        // Nav links
+        document.querySelector('a[href="#experience"]').textContent = T.navExp;
+        document.querySelector('a[href="#projects"]').textContent = T.navProj;
+        document.querySelector('a[href="#certifications"]').textContent = T.navCert;
+        document.querySelector('a[href="#education"]').textContent = T.navEdu;
+        document.querySelector('a[href="#contact-form"]').textContent = T.navCon;
+
+        // Badges
+        var badges = document.querySelectorAll('.hero-status .badge');
+        var badgeTexts = [T.badgeProj, T.badgeFull, T.badgePart, T.badgeRemote, T.badgeHybrid];
+        badges.forEach(function(b, i) {
+          var svg = b.querySelector('svg');
+          b.innerHTML = '';
+          if (svg) b.appendChild(svg);
+          b.appendChild(document.createTextNode(' ' + badgeTexts[i]));
+        });
+
+        // Stats
+        var statLabels = document.querySelectorAll('.stat-label');
+        [T.statYears, T.statCerts, T.statProj, T.statCreds].forEach(function(v, i) { statLabels[i].textContent = v; });
+
+        // Section titles
+        document.querySelector('#experience .section-title').textContent = T.secExp;
+        document.querySelector('#projects .section-title').textContent = T.secProj;
+        document.querySelector('#certifications .section-title').textContent = T.secCert;
+        document.querySelector('#education .section-title').textContent = T.secEdu;
+        document.querySelector('#skills .section-title').textContent = T.secSkills;
+        document.querySelector('#tools .section-title').textContent = T.secTools;
+        var toolsSub = document.querySelector('#tools p.reveal');
+        if (toolsSub) toolsSub.innerHTML = T.toolsSub;
+        document.querySelector('#contact-form .section-title').textContent = T.secContact;
+
+        // Experience
+        var expRoles = document.querySelectorAll('.exp-role');
+        [T.exp1, T.exp2, T.exp3, T.exp4].forEach(function(v, i) { if(expRoles[i]) expRoles[i].textContent = v; });
+
+        // Education
+        var eduItems = document.querySelectorAll('.edu-item');
+        if (eduItems[0]) { eduItems[0].querySelector('.edu-degree').textContent = T.edu1d; eduItems[0].querySelector('.edu-field').textContent = T.edu1f; }
+        if (eduItems[1]) {
+          eduItems[1].querySelector('.edu-degree').textContent = T.edu2d;
+          eduItems[1].querySelector('.edu-field').textContent = T.edu2f;
+          var award = eduItems[1].querySelector('.edu-award');
+          if (award) award.childNodes[award.childNodes.length-1].textContent = ' ' + T.edu2a;
+        }
+        if (eduItems[2]) { eduItems[2].querySelector('.edu-degree').textContent = T.edu3d; eduItems[2].querySelector('.edu-field').textContent = T.edu3f; }
+        if (eduItems[3]) { eduItems[3].querySelector('.edu-degree').textContent = T.edu4d; eduItems[3].querySelector('.edu-field').textContent = T.edu4f; }
+
+        // Contact form
+        var ci = document.querySelector('.contact-intro p');
+        if (ci) ci.textContent = T.contactIntro;
+        var fl = document.querySelector('.form-label[for="name"]'); if(fl) fl.textContent = T.formName;
+        var fe = document.querySelector('.form-label[for="email"]'); if(fe) fe.textContent = T.formEmail;
+        var fm = document.querySelector('.form-label[for="message"]'); if(fm) fm.textContent = T.formMsg;
+        var ni = document.querySelector('#name'); if(ni) ni.placeholder = T.formNamePh;
+        var ei = document.querySelector('#email'); if(ei) ei.placeholder = T.formEmailPh;
+        var mi = document.querySelector('#message'); if(mi) mi.placeholder = T.formMsgPh;
+        var fb = document.getElementById('formSubmitBtn');
+        if (fb && fb.textContent !== 'Sent ✓' && fb.textContent !== 'Enviado ✓') fb.textContent = T.formBtn;
+        var fs = document.getElementById('formSuccess'); if(fs) fs.textContent = T.formSuccess;
+
+        // Footer
+        var footerSpans = document.querySelectorAll('footer span');
+        if (footerSpans[footerSpans.length-1]) footerSpans[footerSpans.length-1].textContent = T.footerSub;
+
+        // Cert filter All button
+        var allBtn = document.querySelector('.cert-filter');
+        if (allBtn) allBtn.textContent = T.filterAll;
+
+        // Typing phrases
+        if (typeof phrases !== 'undefined') {
+          phrases.length = 0;
+          T.phrases.forEach(function(p) { phrases.push(p); });
+        }
+      };
+    })();
+  </script>
 </body>
 </html>
