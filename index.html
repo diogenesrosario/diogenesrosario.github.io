@@ -1252,11 +1252,7 @@
       }
       var lang = browserLangs.some(function(l) { return l === 'es' || l.startsWith('es-'); }) ? 'es' : 'en';
       // Apply browser language on load
-      window.addEventListener('load', function() {
-        if (lang === 'es') {
-          window.toggleLang();
-        }
-      });
+
 
       var t = {
         en: {
@@ -1387,6 +1383,13 @@
           T.phrases.forEach(function(p) { phrases.push(p); });
         }
       };
+
+      // Auto-apply browser language after function is defined
+      window.addEventListener('load', function() {
+        if (lang === 'es') {
+          window.toggleLang();
+        }
+      });
     })();
   </script>
 </body>
