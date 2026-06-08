@@ -1402,7 +1402,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       var d = document.getElementById('lang-debug');
       var langs = navigator.languages ? Array.from(navigator.languages) : [navigator.language];
-      d.innerHTML = 'langs: ' + JSON.stringify(langs) + '<br>detected: ' + (langs.some(function(l){ return l.toLowerCase().startsWith('es'); }) ? 'ES' : 'EN');
+      d.innerHTML = 'langs: ' + JSON.stringify(langs) + '<br>detected: ' + (langs.some(function(l){ return l.toLowerCase().startsWith('es'); }) ? 'ES' : 'EN') + '<br>toggleLang exists: ' + (typeof window.toggleLang !== 'undefined') + '<br><button onclick="window.toggleLang();this.textContent=\'ran!\'" style="color:lime;background:none;border:1px solid lime;padding:2px 6px;cursor:pointer;margin-top:4px;">Force ES</button>';
     });
   </script>
 </body>
