@@ -1390,7 +1390,11 @@
 
       // Auto-apply if browser is in Spanish
       if (lang === 'es') {
-        setTimeout(function() { window.toggleLang(); }, 500);
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            window.toggleLang();
+          });
+        });
       }
     })();
   </script>
