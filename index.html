@@ -496,7 +496,6 @@
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
       <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
       <a href="#contact-form">Contact</a>
     </div>
     </div>
@@ -1319,8 +1318,8 @@
         var ey = document.querySelector('.hero-eyebrow'); if(ey) ey.textContent = t.eyebrow;
         var bio = document.querySelector('.hero-bio'); if(bio) bio.textContent = t.bio;
 
-        var navLinks = ['#experience','#projects','#certifications','#education','#skills','#contact-form'];
-        var navKeys = ['navExp','navProj','navCert','navEdu','navSkills','navCon'];
+        var navLinks = ['#experience','#projects','#certifications','#education','#contact-form'];
+        var navKeys = ['navExp','navProj','navCert','navEdu','navCon'];
         navLinks.forEach(function(sel,i){ var el=document.querySelector('a[href="'+sel+'"]'); if(el) el.textContent=t[navKeys[i]]; });
 
         var badges = document.querySelectorAll('.hero-status .badge');
