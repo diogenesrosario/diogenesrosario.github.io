@@ -1246,158 +1246,7 @@
 
 
 
-  <script>
-    (function() {
-      var browserLangs = [];
-      if (navigator.languages && navigator.languages.length) {
-        browserLangs = Array.from(navigator.languages).map(function(l) { return l.toLowerCase(); });
-      } else {
-        browserLangs = [(navigator.language || navigator.userLanguage || 'en').toLowerCase()];
-      }
-      var lang = browserLangs.some(function(l) { return l === 'es' || l.startsWith('es-'); }) ? 'es' : 'en';
-      // Apply browser language on load
 
-
-      var t = {
-        en: {
-          eyebrow: 'Cybersecurity Engineer · Blue Team · Cloud Infrastructure',
-          bio: 'Cybersecurity professional with experience in SOC Tier 2 operations, security incident investigation, and cloud-based environments. Skilled in incident response, email security analysis, vulnerability remediation, and AI-related security investigations — with a strong background in Microsoft 365, Azure, AWS, and Linux/Windows infrastructure.',
-          navExp: 'Experience', navProj: 'Projects', navCert: 'Certifications', navEdu: 'Education', navCon: 'Contact',
-          badgeProj: 'Available for projects', badgeFull: 'Full-time', badgePart: 'Part-time', badgeRemote: 'Remote preferred', badgeHybrid: 'Open to hybrid', badgeOnsite: 'Open to on-site',
-          statYears: 'Years experience', statCerts: 'Certifications', statProj: 'Projects', statCreds: 'Credentials',
-          secExp: 'Experience', secProj: 'Projects', secCert: 'Credentials & Certifications', secEdu: 'Education', secSkills: 'Skills', secTools: 'Tools & Technologies', secContact: 'Get in Touch',
-          toolsSub: "These are <em>some</em> of the tools and technologies I've used throughout my professional journey.",
-          exp1: 'Cybersecurity Analyst', exp2: 'IT Infrastructure Manager', exp3: 'Cybersecurity Instructor Assistant', exp4: 'Cybersecurity Content Development Manager',
-          edu1d: 'Bachelor of Engineering in Cybersecurity', edu1f: 'Cybersecurity Engineering',
-          edu2d: 'Technologist in Information Security', edu2f: 'Information Security', edu2a: 'Highest GPA — 14th Graduation Ceremony',
-          edu3d: 'High School IT Technician', edu3f: 'Computer Science',
-          edu4d: 'English Language Program', edu4f: 'Advanced English',
-          contactIntro: "Interested in working together, have a question, or just want to connect? Send me a message and I'll get back to you as soon as possible.",
-          formName: 'NAME', formEmail: 'EMAIL', formMsg: 'MESSAGE',
-          formNamePh: 'Your name', formEmailPh: 'your@email.com', formMsgPh: "What's on your mind?",
-          formBtn: 'Send message →', formSuccess: "Message sent! I'll get back to you soon.",
-          footerSub: '© 2026 · Cybersecurity Engineer · Santo Domingo, DR',
-          filterAll: 'All',
-          phrases: ["Defend. Detect. Respond.","Think like an attacker, act like a defender.","Always watching. Always protecting.","Security is not a product, it's a process.","Blue Team mindset.","Securing systems, one layer at a time.","Detect threats before they become incidents.","Defense in depth, always."]
-        },
-        es: {
-          eyebrow: 'Ingeniero en Ciberseguridad · Blue Team · Infraestructura Cloud',
-          bio: 'Profesional en ciberseguridad con experiencia en operaciones SOC Tier 2, investigación de incidentes de seguridad y entornos en la nube. Habilidades en respuesta a incidentes, análisis de seguridad de correo electrónico, remediación de vulnerabilidades e investigaciones de seguridad relacionadas con IA — con sólida experiencia en Microsoft 365, Azure, AWS e infraestructura Linux/Windows.',
-          navExp: 'Experiencia', navProj: 'Proyectos', navCert: 'Certificaciones', navEdu: 'Educación', navCon: 'Contacto',
-          badgeProj: 'Disponible para proyectos', badgeFull: 'Tiempo completo', badgePart: 'Medio tiempo', badgeRemote: 'Prefiero remoto', badgeHybrid: 'Abierto a híbrido', badgeOnsite: 'Disponible presencial',
-          statYears: 'Años de experiencia', statCerts: 'Certificaciones', statProj: 'Proyectos', statCreds: 'Credenciales',
-          secExp: 'Experiencia', secProj: 'Proyectos', secCert: 'Credenciales y Certificaciones', secEdu: 'Educación', secSkills: 'Habilidades', secTools: 'Herramientas y Tecnologías', secContact: 'Contáctame',
-          toolsSub: 'Estas son <em>algunas</em> de las herramientas y tecnologías que he utilizado durante mi trayecto profesional.',
-          exp1: 'Analista de Ciberseguridad', exp2: 'Gerente de Infraestructura TI', exp3: 'Asistente de Instructor de Ciberseguridad', exp4: 'Gerente de Desarrollo de Contenido en Ciberseguridad',
-          edu1d: 'Ingeniería en Ciberseguridad', edu1f: 'Ingeniería en Ciberseguridad',
-          edu2d: 'Tecnólogo en Seguridad Informática', edu2f: 'Seguridad Informática', edu2a: 'Promedio más alto — 14ta Ceremonia de Graduación',
-          edu3d: 'Técnico en Informática (Bachillerato)', edu3f: 'Informática',
-          edu4d: 'Programa de Idioma Inglés', edu4f: 'Inglés Avanzado',
-          contactIntro: '¿Interesado en trabajar juntos, tienes una pregunta o simplemente quieres conectar? Envíame un mensaje y te responderé lo antes posible.',
-          formName: 'NOMBRE', formEmail: 'CORREO', formMsg: 'MENSAJE',
-          formNamePh: 'Tu nombre', formEmailPh: 'tu@correo.com', formMsgPh: '¿En qué puedo ayudarte?',
-          formBtn: 'Enviar mensaje →', formSuccess: '¡Mensaje enviado! Te responderé pronto.',
-          footerSub: '© 2026 · Ingeniero en Ciberseguridad · Santo Domingo, RD',
-          filterAll: 'Todas',
-          phrases: ["Defender. Detectar. Responder.","Piensa como atacante, actúa como defensor.","Siempre vigilando. Siempre protegiendo.","La seguridad no es un producto, es un proceso.","Mentalidad Blue Team.","Asegurando sistemas, capa por capa.","Detecta amenazas antes de que se conviertan en incidentes.","Defensa en profundidad, siempre."]
-        }
-      };
-
-      window.toggleLang = function() {
-        lang = lang === 'en' ? 'es' : 'en';
-        var T = t[lang];
-        document.getElementById('langBtn').textContent = lang === 'en' ? '🌐 EN' : '🌐 ES';
-
-        // Hero
-        document.querySelector('.hero-eyebrow').textContent = T.eyebrow;
-        document.querySelector('.hero-bio').textContent = T.bio;
-
-        // Nav links
-        document.querySelector('a[href="#experience"]').textContent = T.navExp;
-        document.querySelector('a[href="#projects"]').textContent = T.navProj;
-        document.querySelector('a[href="#certifications"]').textContent = T.navCert;
-        document.querySelector('a[href="#education"]').textContent = T.navEdu;
-        document.querySelector('a[href="#contact-form"]').textContent = T.navCon;
-
-        // Badges
-        var badges = document.querySelectorAll('.hero-status .badge');
-        var badgeTexts = [T.badgeProj, T.badgeFull, T.badgePart, T.badgeRemote, T.badgeHybrid, T.badgeOnsite];
-        badges.forEach(function(b, i) {
-          var svg = b.querySelector('svg');
-          b.innerHTML = '';
-          if (svg) b.appendChild(svg);
-          b.appendChild(document.createTextNode(' ' + badgeTexts[i]));
-        });
-
-        // Stats
-        var statLabels = document.querySelectorAll('.stat-label');
-        [T.statYears, T.statCerts, T.statProj, T.statCreds].forEach(function(v, i) { statLabels[i].textContent = v; });
-
-        // Section titles
-        document.querySelector('#experience .section-title').textContent = T.secExp;
-        document.querySelector('#projects .section-title').textContent = T.secProj;
-        document.querySelector('#certifications .section-title').textContent = T.secCert;
-        document.querySelector('#education .section-title').textContent = T.secEdu;
-        document.querySelector('#skills .section-title').textContent = T.secSkills;
-        document.querySelector('#tools .section-title').textContent = T.secTools;
-        var toolsSub = document.querySelector('#tools p.reveal');
-        if (toolsSub) toolsSub.innerHTML = T.toolsSub;
-        document.querySelector('#contact-form .section-title').textContent = T.secContact;
-
-        // Experience
-        var expRoles = document.querySelectorAll('.exp-role');
-        [T.exp1, T.exp2, T.exp3, T.exp4].forEach(function(v, i) { if(expRoles[i]) expRoles[i].textContent = v; });
-
-        // Education
-        var eduItems = document.querySelectorAll('.edu-item');
-        if (eduItems[0]) { eduItems[0].querySelector('.edu-degree').textContent = T.edu1d; eduItems[0].querySelector('.edu-field').textContent = T.edu1f; }
-        if (eduItems[1]) {
-          eduItems[1].querySelector('.edu-degree').textContent = T.edu2d;
-          eduItems[1].querySelector('.edu-field').textContent = T.edu2f;
-          var award = eduItems[1].querySelector('.edu-award');
-          if (award) award.childNodes[award.childNodes.length-1].textContent = ' ' + T.edu2a;
-        }
-        if (eduItems[2]) { eduItems[2].querySelector('.edu-degree').textContent = T.edu3d; eduItems[2].querySelector('.edu-field').textContent = T.edu3f; }
-        if (eduItems[3]) { eduItems[3].querySelector('.edu-degree').textContent = T.edu4d; eduItems[3].querySelector('.edu-field').textContent = T.edu4f; }
-
-        // Contact form
-        var ci = document.querySelector('.contact-intro p');
-        if (ci) ci.textContent = T.contactIntro;
-        var fl = document.querySelector('.form-label[for="name"]'); if(fl) fl.textContent = T.formName;
-        var fe = document.querySelector('.form-label[for="email"]'); if(fe) fe.textContent = T.formEmail;
-        var fm = document.querySelector('.form-label[for="message"]'); if(fm) fm.textContent = T.formMsg;
-        var ni = document.querySelector('#name'); if(ni) ni.placeholder = T.formNamePh;
-        var ei = document.querySelector('#email'); if(ei) ei.placeholder = T.formEmailPh;
-        var mi = document.querySelector('#message'); if(mi) mi.placeholder = T.formMsgPh;
-        var fb = document.getElementById('formSubmitBtn');
-        if (fb && fb.textContent !== 'Sent ✓' && fb.textContent !== 'Enviado ✓') fb.textContent = T.formBtn;
-        var fs = document.getElementById('formSuccess'); if(fs) fs.textContent = T.formSuccess;
-
-        // Footer
-        var footerSpans = document.querySelectorAll('footer span');
-        if (footerSpans[footerSpans.length-1]) footerSpans[footerSpans.length-1].textContent = T.footerSub;
-
-        // Cert filter All button
-        var allBtn = document.querySelector('.cert-filter');
-        if (allBtn) allBtn.textContent = T.filterAll;
-
-        // Typing phrases
-        if (typeof phrases !== 'undefined') {
-          phrases.length = 0;
-          T.phrases.forEach(function(p) { phrases.push(p); });
-        }
-      };
-
-      // Auto-apply if browser is in Spanish
-      if (lang === 'es') {
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            window.toggleLang();
-          });
-        });
-      }
-    })();
-  </script>
 
   <div id="lang-debug" style="position:fixed;bottom:60px;left:10px;background:#333;color:#fff;padding:8px 12px;font-size:11px;font-family:monospace;border-radius:6px;z-index:999;max-width:300px;word-break:break-all;">
     Loading...
@@ -1407,6 +1256,143 @@
       var d = document.getElementById('lang-debug');
       var langs = navigator.languages ? Array.from(navigator.languages) : [navigator.language];
       d.innerHTML = 'langs: ' + JSON.stringify(langs) + '<br>detected: ' + (langs.some(function(l){ return l.toLowerCase().startsWith('es'); }) ? 'ES' : 'EN') + '<br>toggleLang exists: ' + (typeof window.toggleLang !== 'undefined') + '<br><button onclick="window.toggleLang();this.textContent=\'ran!\'" style="color:lime;background:none;border:1px solid lime;padding:2px 6px;cursor:pointer;margin-top:4px;">Force ES</button>';
+    });
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+
+      var isSpanish = Array.from(navigator.languages || [navigator.language || 'en']).some(function(l) {
+        return l.toLowerCase() === 'es' || l.toLowerCase().startsWith('es-');
+      });
+
+      var currentLang = isSpanish ? 'es' : 'en';
+
+      var T = {
+        en: {
+          eyebrow: 'Cybersecurity Engineer · Blue Team · Cloud Infrastructure',
+          bio: "Cybersecurity professional with experience in SOC Tier 2 operations, security incident investigation, and cloud-based environments. Skilled in incident response, email security analysis, vulnerability remediation, and AI-related security investigations — with a strong background in Microsoft 365, Azure, AWS, and Linux/Windows infrastructure.",
+          navExp: 'Experience', navProj: 'Projects', navCert: 'Certifications', navEdu: 'Education', navCon: 'Contact',
+          badges: ['Available for projects','Full-time','Part-time','Remote preferred','Open to hybrid','Open to on-site'],
+          statLabels: ['Years experience','Certifications','Projects','Credentials'],
+          secExp: 'Experience', secProj: 'Projects', secCert: 'Credentials & Certifications', secEdu: 'Education',
+          secSkills: 'Skills', secTools: 'Tools & Technologies', secContact: 'Get in Touch',
+          toolsSub: "These are <em>some</em> of the tools and technologies I've used throughout my professional journey.",
+          expRoles: ['Cybersecurity Analyst','IT Infrastructure Manager','Cybersecurity Instructor Assistant','Cybersecurity Content Development Manager'],
+          edu: [
+            {d:'Bachelor of Engineering in Cybersecurity', f:'Cybersecurity Engineering'},
+            {d:'Technologist in Information Security', f:'Information Security', a:'Highest GPA — 14th Graduation Ceremony'},
+            {d:'High School IT Technician', f:'Computer Science'},
+            {d:'English Language Program', f:'Advanced English'}
+          ],
+          contactIntro: "Interested in working together, have a question, or just want to connect? Send me a message and I'll get back to you as soon as possible.",
+          formName:'NAME', formEmail:'EMAIL', formMsg:'MESSAGE',
+          namePh:'Your name', emailPh:'your@email.com', msgPh:"What's on your mind?",
+          formBtn:'Send message →', formSuccess:"Message sent! I'll get back to you soon.",
+          footerSub:'© 2026 · Cybersecurity Engineer · Santo Domingo, DR',
+          filterAll:'All',
+          phrases:["Defend. Detect. Respond.","Think like an attacker, act like a defender.","Always watching. Always protecting.","Security is not a product, it's a process.","Blue Team mindset.","Securing systems, one layer at a time.","Detect threats before they become incidents.","Defense in depth, always."]
+        },
+        es: {
+          eyebrow: 'Ingeniero en Ciberseguridad · Blue Team · Infraestructura Cloud',
+          bio: 'Profesional en ciberseguridad con experiencia en operaciones SOC Tier 2, investigación de incidentes de seguridad y entornos en la nube. Habilidades en respuesta a incidentes, análisis de seguridad de correo electrónico, remediación de vulnerabilidades e investigaciones de seguridad relacionadas con IA — con sólida experiencia en Microsoft 365, Azure, AWS e infraestructura Linux/Windows.',
+          navExp: 'Experiencia', navProj: 'Proyectos', navCert: 'Certificaciones', navEdu: 'Educación', navCon: 'Contacto',
+          badges: ['Disponible para proyectos','Tiempo completo','Medio tiempo','Prefiero remoto','Abierto a híbrido','Disponible presencial'],
+          statLabels: ['Años de experiencia','Certificaciones','Proyectos','Credenciales'],
+          secExp: 'Experiencia', secProj: 'Proyectos', secCert: 'Credenciales y Certificaciones', secEdu: 'Educación',
+          secSkills: 'Habilidades', secTools: 'Herramientas y Tecnologías', secContact: 'Contáctame',
+          toolsSub: 'Estas son <em>algunas</em> de las herramientas y tecnologías que he utilizado durante mi trayecto profesional.',
+          expRoles: ['Analista de Ciberseguridad','Gerente de Infraestructura TI','Asistente de Instructor de Ciberseguridad','Gerente de Desarrollo de Contenido en Ciberseguridad'],
+          edu: [
+            {d:'Ingeniería en Ciberseguridad', f:'Ingeniería en Ciberseguridad'},
+            {d:'Tecnólogo en Seguridad Informática', f:'Seguridad Informática', a:'Promedio más alto — 14ta Ceremonia de Graduación'},
+            {d:'Técnico en Informática (Bachillerato)', f:'Informática'},
+            {d:'Programa de Idioma Inglés', f:'Inglés Avanzado'}
+          ],
+          contactIntro: '¿Interesado en trabajar juntos, tienes una pregunta o simplemente quieres conectar? Envíame un mensaje y te responderé lo antes posible.',
+          formName:'NOMBRE', formEmail:'CORREO', formMsg:'MENSAJE',
+          namePh:'Tu nombre', emailPh:'tu@correo.com', msgPh:'¿En qué puedo ayudarte?',
+          formBtn:'Enviar mensaje →', formSuccess:'¡Mensaje enviado! Te responderé pronto.',
+          footerSub:'© 2026 · Ingeniero en Ciberseguridad · Santo Domingo, RD',
+          filterAll:'Todas',
+          phrases:["Defender. Detectar. Responder.","Piensa como atacante, actúa como defensor.","Siempre vigilando. Siempre protegiendo.","La seguridad no es un producto, es un proceso.","Mentalidad Blue Team.","Asegurando sistemas, capa por capa.","Detecta amenazas antes de que se conviertan en incidentes.","Defensa en profundidad, siempre."]
+        }
+      };
+
+      function applyLang(l) {
+        var t = T[l];
+        var btn = document.getElementById('langBtn');
+        if (btn) btn.textContent = l === 'en' ? '🌐 EN' : '🌐 ES';
+
+        var ey = document.querySelector('.hero-eyebrow'); if(ey) ey.textContent = t.eyebrow;
+        var bio = document.querySelector('.hero-bio'); if(bio) bio.textContent = t.bio;
+
+        var navLinks = ['#experience','#projects','#certifications','#education','#contact-form'];
+        var navKeys = ['navExp','navProj','navCert','navEdu','navCon'];
+        navLinks.forEach(function(sel,i){ var el=document.querySelector('a[href="'+sel+'"]'); if(el) el.textContent=t[navKeys[i]]; });
+
+        var badges = document.querySelectorAll('.hero-status .badge');
+        badges.forEach(function(b,i){
+          if(!t.badges[i]) return;
+          var svg = b.querySelector('svg'); b.innerHTML='';
+          if(svg) b.appendChild(svg);
+          b.appendChild(document.createTextNode(' '+t.badges[i]));
+        });
+
+        var statEls = document.querySelectorAll('.stat-label');
+        statEls.forEach(function(el,i){ if(t.statLabels[i]) el.textContent=t.statLabels[i]; });
+
+        var secs = {
+          '#experience .section-title': 'secExp',
+          '#projects .section-title': 'secProj',
+          '#certifications .section-title': 'secCert',
+          '#education .section-title': 'secEdu',
+          '#skills .section-title': 'secSkills',
+          '#tools .section-title': 'secTools',
+          '#contact-form .section-title': 'secContact'
+        };
+        Object.keys(secs).forEach(function(sel){ var el=document.querySelector(sel); if(el) el.textContent=t[secs[sel]]; });
+
+        var toolsSub = document.querySelector('#tools p.reveal'); if(toolsSub) toolsSub.innerHTML=t.toolsSub;
+
+        var expRoles = document.querySelectorAll('.exp-role');
+        expRoles.forEach(function(el,i){ if(t.expRoles[i]) el.textContent=t.expRoles[i]; });
+
+        var eduItems = document.querySelectorAll('.edu-item');
+        t.edu.forEach(function(e,i){
+          if(!eduItems[i]) return;
+          var d=eduItems[i].querySelector('.edu-degree'); if(d) d.textContent=e.d;
+          var f=eduItems[i].querySelector('.edu-field'); if(f) f.textContent=e.f;
+          if(e.a){ var aw=eduItems[i].querySelector('.edu-award'); if(aw){ var svg=aw.querySelector('svg'); aw.innerHTML=''; if(svg) aw.appendChild(svg); aw.appendChild(document.createTextNode(' '+e.a)); } }
+        });
+
+        var ci=document.querySelector('.contact-intro p'); if(ci) ci.textContent=t.contactIntro;
+        var fn=document.querySelector('.form-label[for="name"]'); if(fn) fn.textContent=t.formName;
+        var fe=document.querySelector('.form-label[for="email"]'); if(fe) fe.textContent=t.formEmail;
+        var fm=document.querySelector('.form-label[for="message"]'); if(fm) fm.textContent=t.formMsg;
+        var ni=document.querySelector('#name'); if(ni) ni.placeholder=t.namePh;
+        var ei=document.querySelector('#email'); if(ei) ei.placeholder=t.emailPh;
+        var mi=document.querySelector('#message'); if(mi) mi.placeholder=t.msgPh;
+        var fb=document.getElementById('formSubmitBtn');
+        if(fb && fb.textContent!=='Sent ✓' && fb.textContent!=='Enviado ✓') fb.textContent=t.formBtn;
+        var fs=document.getElementById('formSuccess'); if(fs) fs.textContent=t.formSuccess;
+
+        var footerSpans=document.querySelectorAll('footer span');
+        if(footerSpans.length) footerSpans[footerSpans.length-1].textContent=t.footerSub;
+
+        var allBtn=document.querySelector('.cert-filter'); if(allBtn) allBtn.textContent=t.filterAll;
+
+        if(typeof phrases!=='undefined'){ phrases.length=0; t.phrases.forEach(function(p){ phrases.push(p); }); }
+      }
+
+      // Apply on load
+      applyLang(currentLang);
+
+      // Toggle function
+      window.toggleLang = function() {
+        currentLang = currentLang === 'en' ? 'es' : 'en';
+        applyLang(currentLang);
+      };
+
     });
   </script>
 </body>
