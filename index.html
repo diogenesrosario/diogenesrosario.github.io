@@ -563,6 +563,10 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="9" height="7" rx="1"/><path d="M10 6l4-2v7l-4-2"/></svg>
           Open to hybrid
         </span>
+        <span class="badge badge-slate">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z"/><circle cx="8" cy="6" r="1.5"/><line x1="2" y1="14" x2="14" y2="14" stroke="currentColor" stroke-width="2"/></svg>
+          Open to on-site
+        </span>
       </div>
     </div>
   </section>
@@ -1259,7 +1263,7 @@
           eyebrow: 'Cybersecurity Engineer · Blue Team · Cloud Infrastructure',
           bio: 'Cybersecurity professional with experience in SOC Tier 2 operations, security incident investigation, and cloud-based environments. Skilled in incident response, email security analysis, vulnerability remediation, and AI-related security investigations — with a strong background in Microsoft 365, Azure, AWS, and Linux/Windows infrastructure.',
           navExp: 'Experience', navProj: 'Projects', navCert: 'Certifications', navEdu: 'Education', navCon: 'Contact',
-          badgeProj: 'Available for projects', badgeFull: 'Full-time', badgePart: 'Part-time', badgeRemote: 'Remote preferred', badgeHybrid: 'Open to hybrid',
+          badgeProj: 'Available for projects', badgeFull: 'Full-time', badgePart: 'Part-time', badgeRemote: 'Remote preferred', badgeHybrid: 'Open to hybrid', badgeOnsite: 'Open to on-site',
           statYears: 'Years experience', statCerts: 'Certifications', statProj: 'Projects', statCreds: 'Credentials',
           secExp: 'Experience', secProj: 'Projects', secCert: 'Credentials & Certifications', secEdu: 'Education', secSkills: 'Skills', secTools: 'Tools & Technologies', secContact: 'Get in Touch',
           toolsSub: "These are <em>some</em> of the tools and technologies I've used throughout my professional journey.",
@@ -1280,7 +1284,7 @@
           eyebrow: 'Ingeniero en Ciberseguridad · Blue Team · Infraestructura Cloud',
           bio: 'Profesional en ciberseguridad con experiencia en operaciones SOC Tier 2, investigación de incidentes de seguridad y entornos en la nube. Habilidades en respuesta a incidentes, análisis de seguridad de correo electrónico, remediación de vulnerabilidades e investigaciones de seguridad relacionadas con IA — con sólida experiencia en Microsoft 365, Azure, AWS e infraestructura Linux/Windows.',
           navExp: 'Experiencia', navProj: 'Proyectos', navCert: 'Certificaciones', navEdu: 'Educación', navCon: 'Contacto',
-          badgeProj: 'Disponible para proyectos', badgeFull: 'Tiempo completo', badgePart: 'Medio tiempo', badgeRemote: 'Prefiero remoto', badgeHybrid: 'Abierto a híbrido',
+          badgeProj: 'Disponible para proyectos', badgeFull: 'Tiempo completo', badgePart: 'Medio tiempo', badgeRemote: 'Prefiero remoto', badgeHybrid: 'Abierto a híbrido', badgeOnsite: 'Disponible presencial',
           statYears: 'Años de experiencia', statCerts: 'Certificaciones', statProj: 'Proyectos', statCreds: 'Credenciales',
           secExp: 'Experiencia', secProj: 'Proyectos', secCert: 'Credenciales y Certificaciones', secEdu: 'Educación', secSkills: 'Habilidades', secTools: 'Herramientas y Tecnologías', secContact: 'Contáctame',
           toolsSub: 'Estas son <em>algunas</em> de las herramientas y tecnologías que he utilizado durante mi trayecto profesional.',
@@ -1317,7 +1321,7 @@
 
         // Badges
         var badges = document.querySelectorAll('.hero-status .badge');
-        var badgeTexts = [T.badgeProj, T.badgeFull, T.badgePart, T.badgeRemote, T.badgeHybrid];
+        var badgeTexts = [T.badgeProj, T.badgeFull, T.badgePart, T.badgeRemote, T.badgeHybrid, T.badgeOnsite];
         badges.forEach(function(b, i) {
           var svg = b.querySelector('svg');
           b.innerHTML = '';
@@ -1384,12 +1388,7 @@
         }
       };
 
-      // Auto-apply browser language after function is defined
-      window.addEventListener('load', function() {
-        if (lang === 'es') {
-          window.toggleLang();
-        }
-      });
+
     })();
   </script>
 </body>
